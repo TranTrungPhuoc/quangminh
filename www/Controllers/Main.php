@@ -14,6 +14,8 @@ class Main{
     }
 
     public function dashboard(){
-        echo "Mon tableau de bord";
+        $pseudo = "Prof";
+        $view = new View("Dashboard/index", "back");
+        $view->assign("pseudo", $pseudo);
     }
 }
