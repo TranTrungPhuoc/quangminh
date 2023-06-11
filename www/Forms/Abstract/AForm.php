@@ -7,7 +7,7 @@ abstract class AForm
     public function isSubmit(): bool
     {
         $data = ($this->getMethod() == "post")?$_POST:$_GET;
-        if(empty($data["submit"]))
+        if(empty($data))
             return false;
         return true;
     }

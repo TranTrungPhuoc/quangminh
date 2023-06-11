@@ -18,6 +18,17 @@ abstract class Sql{
         $this->table = "esgi_".$this->table;
     }
 
+    public function getList(): array
+    {
+        // $queryPrepared = $this->pdo->query("SELECT * FROM ".$this->table);
+        
+        // $arr = $this->pdo->fetch_array($queryPrepared);
+        
+        // print_r($this->pdo);
+
+        // die;
+    }
+
     public function save(): void
     {
         $columns = get_object_vars($this);
@@ -35,8 +46,14 @@ abstract class Sql{
             $queryPrepared = $this->pdo->prepare("UPDATE ".$this->table." SET ".implode(",",$columnsUpdate)." WHERE id=".$this->getId());
 
         }else{
-            $queryPrepared = $this->pdo->prepare("INSERT INTO ".$this->table." (".implode(",", array_keys($columns)).") 
-                            VALUES (:".implode(",:", array_keys($columns)).")");
+            // print_r(implode(",", array_keys($columns)));die;
+
+            $i = "INSERT INTO ".$this->table." (firstname,lastname,email,password,status)
+                VALUES ('John', 'Doe', 'john@example.com', '123456', true)";
+
+            // $queryPrepared = $this->pdo->prepare("INSERT INTO ".$this->table." (".implode(",", array_keys($columns)).") 
+            //                 VALUES (:".implode(",:", array_keys($columns)).")");
+            $queryPrepared = $this->pdo->prepare($i);
         }
 
         $queryPrepared->execute($columns);

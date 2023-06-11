@@ -11,7 +11,6 @@ class View {
         $this->setTemplate($template);
     }
 
-
     public function assign(String $key, $value): void
     {
         $this->data[$key]=$value;

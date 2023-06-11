@@ -141,7 +141,4 @@ class User extends Sql {
     {
         return $this->date_updated;
     }
-
-
-
 }

@@ -1,22 +1,82 @@
 /:
-  controller: Main
+  controller: Layout
   action: index
 
-/dashboard:
-  controller: Main
-  action: dashboard
+# dashboard
+/admin/dashboard/index:
+  controller: Dashboard
+  action: index
+# end
 
-/contact:
-  controller: Main
-  action: contact
+# user
+/admin/user/index:
+  controller: User_Controller
+  action: index
 
-/login:
-  controller: Security
-  action: login
+/admin/user/insert:
+  controller: User_Controller
+  action: insert
 
-/logout:
-  controller: Security
-  action: logout
+/admin/user/update:
+  controller: User_Controller
+  action: update
+
+/admin/user/delete:
+  controller: User_Controller
+  action: delete
+# end
+
+# category
+/admin/category/index:
+  controller: Category
+  action: index
+
+/admin/category/insert:
+  controller: Category
+  action: insert
+
+/admin/category/update:
+  controller: Category
+  action: update
+
+/admin/category/delete:
+  controller: Category
+  action: delete
+# end
+
+# post
+/admin/post/index:
+  controller: Post
+  action: index
+
+/admin/post/insert:
+  controller: Post
+  action: insert
+
+/admin/post/update:
+  controller: Post
+  action: update
+
+/admin/post/delete:
+  controller: Post
+  action: delete
+# end
+
+# /admin/post/index:
+#   controller: Main
+#   action: post
+
+# /contact:
+#   controller: Main
+#   action: contact
+
+# /login:
+#   controller: Security
+#   action: login
+
+# /logout:
+#   controller: Security
+#   action: logout
 
 /register:
   controller: Security
