@@ -8,39 +8,37 @@ use App\Core\Verificator;
 class User_Controller {
     function index(){
         $user = new User();
-        $pseudo = "Prof";
+        $table = $user->getList();
         $view = new View("User/index_user", "back");
-        $view->assign("view", $pseudo);
+        $view->assign("table", $table);
     }   
     function insert(): void
     {
-        $form = new AddUser();
+        $form = new FormUser();
         $view = new View("User/form_user", "back");
         $view->assign('form', $form->getConfig());
-
         if($form->isSubmit()){
             $firstname = $_POST["firstname"];
             $lastname = $_POST["lastname"];
             $email = $_POST["email"];
             $pwd = $_POST["pwd"];
             $pwdConfirm = $_POST["pwdConfirm"];
-
             $user = new User();
-            // $user->setId(1);
             $user->setFirstname($firstname);
             $user->setLastname($lastname);
             $user->setEmail($email);
             $user->setPassword($pwd);
             $user->save();
-
-            // header('Location: http://localhost/admin/user/index');
-            // exit();
+            header('Location: http://localhost/admin/user/index');
+            exit();
         }
     }
     function update(){
-        $pseudo = "Prof";
-        $view = new View("User/form", "back");
-        $view->assign("pseudo", $pseudo);
+        $form = new FormUser();
+        $user = new User();
+        $row = $user->getDetail($_GET['id']);
+        $view = new View("User/form_user", "back");
+        $view->assign('form', $form->getConfig($row));
     }
     function delete(){
         echo 'delete';

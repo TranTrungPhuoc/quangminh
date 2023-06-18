@@ -35,6 +35,7 @@
                                             type="<?php echo $value['inputs']['type']; ?>" 
                                             class="form-control" 
                                             name="<?php echo $key; ?>" 
+                                            value="<?php echo $value['inputs']['value']; ?>"
                                             <?php echo $value['inputs']['required']; ?>
                                             placeholder="<?php echo $value['labels']['title']; ?>">
                                     </div>

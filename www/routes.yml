@@ -2,13 +2,10 @@
   controller: Layout
   action: index
 
-# dashboard
 /admin/dashboard/index:
   controller: Dashboard
   action: index
-# end
 
-# user
 /admin/user/index:
   controller: User_Controller
   action: index
@@ -24,9 +21,7 @@
 /admin/user/delete:
   controller: User_Controller
   action: delete
-# end
 
-# category
 /admin/category/index:
   controller: Category
   action: index
@@ -42,9 +37,7 @@
 /admin/category/delete:
   controller: Category
   action: delete
-# end
 
-# post
 /admin/post/index:
   controller: Post
   action: index
@@ -60,7 +53,6 @@
 /admin/post/delete:
   controller: Post
   action: delete
-# end
 
 # /admin/post/index:
 #   controller: Main

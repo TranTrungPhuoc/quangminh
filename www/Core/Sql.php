@@ -19,19 +19,25 @@ abstract class Sql{
     }
 
     public function getList(): array
-    {
-        // $queryPrepared = $this->pdo->query("SELECT * FROM ".$this->table);
-        
-        // $arr = $this->pdo->fetch_array($queryPrepared);
-        
-        // print_r($this->pdo);
+    {   
+        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." ORDER BY id DESC");
+        $queryPrepared->execute();
+        $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
+    }
 
-        // die;
+    public function getDetail($id): array
+    {   
+        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." WHERE id=".$id);
+        $queryPrepared->execute();
+        $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
     }
 
     public function save(): void
     {
         $columns = get_object_vars($this);
+
         $columnsToDeleted =get_class_vars(get_class());
         $columns = array_diff_key($columns, $columnsToDeleted);
         unset($columns["id"]);
@@ -46,16 +52,11 @@ abstract class Sql{
             $queryPrepared = $this->pdo->prepare("UPDATE ".$this->table." SET ".implode(",",$columnsUpdate)." WHERE id=".$this->getId());
 
         }else{
-            // print_r(implode(",", array_keys($columns)));die;
-
-            $i = "INSERT INTO ".$this->table." (firstname,lastname,email,password,status)
-                VALUES ('John', 'Doe', 'john@example.com', '123456', true)";
-
-            // $queryPrepared = $this->pdo->prepare("INSERT INTO ".$this->table." (".implode(",", array_keys($columns)).") 
-            //                 VALUES (:".implode(",:", array_keys($columns)).")");
-            $queryPrepared = $this->pdo->prepare($i);
+            $columnString = implode(',', array_keys($columns));
+            $valueString = implode(',', array_fill(0, count($columns), '?'));
+            $queryPrepared = $this->pdo->prepare("INSERT INTO {$this->table} ({$columnString}) VALUES ({$valueString})");
         }
 
-        $queryPrepared->execute($columns);
+        $queryPrepared->execute(array_values($columns));
     }
 }

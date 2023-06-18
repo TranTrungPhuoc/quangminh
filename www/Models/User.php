@@ -11,8 +11,8 @@ class User extends Sql {
     protected String $email;
     protected String $password;
     protected Int $status = 0;
-    protected $date_inserted;
-    protected $date_updated;
+    // protected $date_inserted;
+    // protected $date_updated;
 
     /**
      * @return int
@@ -129,16 +129,24 @@ class User extends Sql {
     /**
      * @return mixed
      */
-    public function getDateInserted()
-    {
-        return $this->date_inserted;
-    }
+    // public function getDateInserted()
+    // {
+    //     return $this->date_inserted;
+    // }
+
+    /**
+     * @param int $status
+     */
+    // public function setDateInserted(Date $date_inserted): void
+    // {
+    //     $this->date_inserted = $date_inserted;
+    // }
 
     /**
      * @return mixed
      */
-    public function getDateUpdated()
-    {
-        return $this->date_updated;
-    }
+    // public function getDateUpdated()
+    // {
+    //     return $this->date_updated;
+    // }
 }
