@@ -11,11 +11,11 @@ class FormUser extends AForm {
     {
         $group = [];
 
-        $group['firstname'] = $this->input(
-            [ "title" => "Họ" ],
+        $group['firstname'] = $this->getInput(
+            [ "title" => "Firstname" ],
             [
                 "type"=>"text",
-                "placeholder"=>"Votre prénom",
+                "placeholder"=>"Firstname",
                 "min"=>2,
                 "max"=>60,
                 "value"=> ($row)?trim($row[0]['firstname']):'',
@@ -24,11 +24,11 @@ class FormUser extends AForm {
             ]
         );
 
-        $group['lastname'] = $this->input(
-            [ "title" => "Tên" ],
+        $group['lastname'] = $this->getInput(
+            [ "title" => "Lastname" ],
             [
                 "type"=>"text",
-                "placeholder"=>"Votre nom",
+                "placeholder"=>"Lastname",
                 "min"=>2,
                 "max"=>120,
                 "value"=> ($row)?trim($row[0]['lastname']):'',
@@ -37,14 +37,14 @@ class FormUser extends AForm {
             ]
         );
 
-        $group['email'] = $this->input(
+        $group['email'] = $this->getInput(
             [
                 "id" => "email",
                 "title" => "Email"
             ],
             [
                 "type"=>"email",
-                "placeholder"=>"Votre email",
+                "placeholder"=>"Email",
                 "required" => "required",
                 "value"=> ($row)?trim($row[0]['email']):'',
                 "error"=>"Le format de votre email est incorrect"
@@ -52,24 +52,24 @@ class FormUser extends AForm {
         );
 
         if(!$row){
-            $group['pwd'] = $this->input(
+            $group['pwd'] = $this->getInput(
                 [
                     "id" => "password",
-                    "title" => "Mật Khẩu"
+                    "title" => "Password"
                 ],
                 [
                     "type"=>"password",
-                    "placeholder"=>"Votre mot de passe",
+                    "placeholder"=>"Password",
                     "required" => "required",
                     "value"=> '',
                     "error"=>"Votre mot de passe est incorrect"
                 ]
             );
     
-            $group['pwdConfirm'] = $this->input(
+            $group['pwdConfirm'] = $this->getInput(
                 [
                     "id" => "pwdConfirm",
-                    "title" => "Xác Nhận Mật Khẩu"
+                    "title" => "PwdConfirm"
                 ],
                 [
                     "type"=>"password",
@@ -103,13 +103,6 @@ class FormUser extends AForm {
                 "cancel"=>"index"
             ],
             "groups" => $group
-        ];
-    }
-
-    public function input($labels=[], $inputs=[]){
-        return [
-            "labels" => $labels,
-            "inputs" => $inputs
         ];
     }
 }

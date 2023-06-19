@@ -5,8 +5,8 @@ use App\Forms\AddUser;
 use App\Models\User;
 use App\Core\Verificator;
 
-class User_Controller {
-    public $folder = 'User';
+class Post_Controller {
+    public $folder = 'Post';
     function index(){
         $user = new User();
         $table = $user->getList();
@@ -19,16 +19,15 @@ class User_Controller {
         $view = new View($folder."/form", "back");
         $view->assign('form', $form->getConfig());
         if($form->isSubmit()){
-            $firstname = $_POST["firstname"];
-            $lastname = $_POST["lastname"];
-            $email = $_POST["email"];
-            $pwd = $_POST["pwd"];
-            $pwdConfirm = $_POST["pwdConfirm"];
+            $name = $_POST["name"];
+            $slug = $_POST["slug"];
+            $image = $_POST["image"];
+            $parents = $_POST["parents"];
             $user = new User();
-            $user->setFirstname($firstname);
-            $user->setLastname($lastname);
-            $user->setEmail($email);
-            $user->setPassword($pwd);
+            $user->setName($name);
+            $user->setSlug($slug);
+            $user->setImage($image);
+            $user->setParents($parents);
             $user->save();
             header('Location: http://localhost/admin/'.strtolower($folder).'/index');
             exit();
