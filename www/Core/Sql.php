@@ -19,16 +19,16 @@ abstract class Sql{
     }
 
     public function getList(): array
-    {   
-        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." ORDER BY id DESC");
+    {
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'"');
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getDetail($id): array
-    {   
-        $queryPrepared = $this->pdo->prepare("SELECT * FROM ".$this->table." WHERE id=".$id);
+    public function getDetail(): array
+    {
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'" WHERE id='.$this->getId());
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
@@ -45,18 +45,24 @@ abstract class Sql{
         if(is_numeric($this->getId()) && $this->getId()>0)
         {
             $columnsUpdate = [];
-            foreach ($columns as $key=>$value)
-            {
-                $columnsUpdate[]= $key."=:".$key;
-            }
-            $queryPrepared = $this->pdo->prepare("UPDATE ".$this->table." SET ".implode(",",$columnsUpdate)." WHERE id=".$this->getId());
-
+            foreach ($columns as $key=>$value) { $columnsUpdate[]= $key."=:".$key; }
+            $queryPrepared = $this->pdo->prepare('UPDATE "public"."'.$this->table.'" SET '.implode(",",$columnsUpdate).' WHERE id='.$this->getId());
         }else{
             $columnString = implode(',', array_keys($columns));
             $valueString = implode(',', array_fill(0, count($columns), '?'));
-            $queryPrepared = $this->pdo->prepare("INSERT INTO {$this->table} ({$columnString}) VALUES ({$valueString})");
+            $queryPrepared = $this->pdo->prepare('INSERT INTO "public"."'.$this->table.'" ('.$columnString.') VALUES ('.$valueString.')');
         }
 
         $queryPrepared->execute(array_values($columns));
+    }
+
+    public function delete() {
+        $queryPrepared = $this->pdo->prepare('DELETE FROM "public"."'.$this->table.'" WHERE id='.$this->getId());
+        $queryPrepared->execute();
+    }
+
+    public function status() {
+        $queryPrepared = $this->pdo->prepare('UPDATE "public"."'.$this->table.'" SET status='.$this->getStatus().' WHERE id='.$this->getId());
+        $queryPrepared->execute();
     }
 }

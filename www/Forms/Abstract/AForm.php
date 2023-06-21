@@ -17,10 +17,10 @@ abstract class AForm
         return strtolower($this->method);
     }
 
-    public function getInput($labels=[], $inputs=[]){
+    public function getElements($labels=[], $elements=[]){
         return [
             "labels" => $labels,
-            "inputs" => $inputs
+            "elements" => $elements
         ];
     }
 }

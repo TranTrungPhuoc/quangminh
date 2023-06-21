@@ -11,7 +11,7 @@ class FormUser extends AForm {
     {
         $group = [];
 
-        $group['firstname'] = $this->getInput(
+        $group['firstname'] = $this->getElements(
             [ "title" => "Firstname" ],
             [
                 "type"=>"text",
@@ -24,7 +24,7 @@ class FormUser extends AForm {
             ]
         );
 
-        $group['lastname'] = $this->getInput(
+        $group['lastname'] = $this->getElements(
             [ "title" => "Lastname" ],
             [
                 "type"=>"text",
@@ -37,7 +37,7 @@ class FormUser extends AForm {
             ]
         );
 
-        $group['email'] = $this->getInput(
+        $group['email'] = $this->getElements(
             [
                 "id" => "email",
                 "title" => "Email"
@@ -52,7 +52,7 @@ class FormUser extends AForm {
         );
 
         if(!$row){
-            $group['pwd'] = $this->getInput(
+            $group['pwd'] = $this->getElements(
                 [
                     "id" => "password",
                     "title" => "Password"
@@ -66,7 +66,7 @@ class FormUser extends AForm {
                 ]
             );
     
-            $group['pwdConfirm'] = $this->getInput(
+            $group['pwdConfirm'] = $this->getElements(
                 [
                     "id" => "pwdConfirm",
                     "title" => "PwdConfirm"
@@ -82,17 +82,58 @@ class FormUser extends AForm {
             );
         }
 
-        // $group['country'] = $this->input(
-        //     [
-        //         "id" => "country",
-        //         "title" => "Quốc Gia"
-        //     ],
-        //     [
-        //         "type"=>"select",
-        //         "options"=>["","FR", "PL"],
-        //         "error"=>"Pays incorrect"
-        //     ]
-        // );
+        $option = [
+            [
+                "value" => "",
+                "title" => "",
+                "selected" => ""
+            ],
+            [
+                "value" => "FR",
+                "title" => "FR",
+                "selected" => ""
+            ],
+            [
+                "value" => "PL",
+                "title" => "PL",
+                "selected" => ""
+            ]
+        ];
+        
+        if($row){
+            $new_option = [];
+            foreach ($option as $key => $value) {
+                $selected = '';
+                echo $value['value'].'/'.$row[0]['country'];
+                if($value['value'] == $row[0]['country']){
+                    $selected = 'selected';
+                }
+
+                echo $selected;
+
+                // $new_option[$key]['value'] = $value['value'];
+                // $new_option[$key]['title'] = $value['title'];
+                // $new_option[$key]['selected'] = $selected;
+            }
+            $option = $new_option;
+
+            // print_r($option);
+            die;
+        }
+
+        die;
+
+        $group['country'] = $this->getElements(
+            [
+                "id" => "country",
+                "title" => "Quốc Gia"
+            ],
+            [
+                "type" => "select",
+                "options" => $option,
+                "error" => "Pays incorrect"
+            ]
+        );
 
         return [
             "config"=>[

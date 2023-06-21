@@ -10,7 +10,8 @@ class User extends Sql {
     protected String $country;
     protected String $email;
     protected String $password;
-    protected Int $status = 0;
+    protected String $status='FALSE';
+    protected $date_updated;
 
     /**
      * @return int
@@ -111,16 +112,32 @@ class User extends Sql {
     /**
      * @return int
      */
-    public function getStatus(): int
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
+    /**EVENT_MAIN
      * @param int $status
      */
-    public function setStatus(int $status): void
+    public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDateUpdated()
+    {
+        return $this->date_updated;
+    }
+
+    /**
+     * @param int $updated
+     */
+    public function setDateUpdated($date_updated): void
+    {
+        $this->date_updated = $date_updated;
     }
 }

@@ -22,6 +22,10 @@
   controller: User_Controller
   action: delete
 
+/admin/user/status:
+  controller: User_Controller
+  action: status
+
 /admin/category/index:
   controller: Category
   action: index

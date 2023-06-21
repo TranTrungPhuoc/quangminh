@@ -53,3 +53,60 @@
         }
     }
 </script>
+
+<script>
+    function getName(id, name) {
+        $('#returnName').text(name);
+        $('#getId').val(id);
+    }
+    function script_delete() {
+        const id = $('#getId').val();
+        if(id){
+            $.ajax({
+                url: 'http://localhost/admin/user/delete',
+                type: 'POST',
+                data: { id },
+                success: function (result) {
+                    $('.alert').show();
+                    if(result != ''){
+                        $('.alert').addClass('alert-warning');
+                        $('.alert').text(result);
+                    }
+                    else{
+                        $('.alert').addClass('alert-success');
+                        $('.alert').text('Đã xoá');
+                        $('#tr_'+id).remove();
+                    }
+                    setTimeout(() => { $('.alert').hide() }, 5000);
+                }
+            })
+            return false;
+        }
+        return;
+    }
+    function script_status(id) {
+        const status = $('.status_'+id).prop( "checked" )
+        if(id){
+            $.ajax({
+                url: 'http://localhost/admin/user/status',
+                type: 'POST',
+                data: { id, status },
+                success: function (result) {
+                    $('.alert').show();
+                    if(result != ''){
+                        $('.alert').addClass('alert-warning');
+                        $('.alert').text(result);
+                        setTimeout(() => { $('.alert').hide() }, 5000);
+                    }
+                    else{
+                        $('.alert').addClass('alert-success');
+                        $('.alert').text('Đã cập nhật');
+                        setTimeout(() => { $('.alert').hide() }, 5000);
+                    }
+                }
+            })
+            return false;
+        }
+        return;
+    }
+</script>

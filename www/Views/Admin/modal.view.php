@@ -1,3 +1,25 @@
+<div id="popup_delete" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLiveLabel">Thông báo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want delete <b class="text-danger"><u><span id="returnName"></span></u></b> ?</p>
+                <input type="hidden" id="getId" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="script_delete()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
