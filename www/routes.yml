@@ -66,9 +66,13 @@
 #   controller: Main
 #   action: contact
 
-# /login:
-#   controller: Security
-#   action: login
+/login:
+  controller: User_Controller
+  action: login
+
+/processlogin:
+  controller: User_Controller
+  action: processlogin
 
 # /logout:
 #   controller: Security

@@ -82,58 +82,51 @@ class FormUser extends AForm {
             );
         }
 
-        $option = [
-            [
-                "value" => "",
-                "title" => "",
-                "selected" => ""
-            ],
-            [
-                "value" => "FR",
-                "title" => "FR",
-                "selected" => ""
-            ],
-            [
-                "value" => "PL",
-                "title" => "PL",
-                "selected" => ""
-            ]
-        ];
+        // $option = [
+        //     [
+        //         "value" => "",
+        //         "title" => "",
+        //         "selected" => ""
+        //     ],
+        //     [
+        //         "value" => "FR",
+        //         "title" => "FR",
+        //         "selected" => ""
+        //     ],
+        //     [
+        //         "value" => "PL",
+        //         "title" => "PL",
+        //         "selected" => ""
+        //     ]
+        // ];
         
-        if($row){
-            $new_option = [];
-            foreach ($option as $key => $value) {
-                $selected = '';
-                echo $value['value'].'/'.$row[0]['country'];
-                if($value['value'] == $row[0]['country']){
-                    $selected = 'selected';
-                }
+        // if($row){
+        //     $new_option = [];
+        //     foreach ($option as $key => $value) {
+        //         $selected = '';
+        //         if($value['value'] == $row[0]['country']){
+        //             $selected = 'selected';
+        //         }
+        //         $new_option[$key]['value'] = $value['value'];
+        //         $new_option[$key]['title'] = $value['title'];
+        //         $new_option[$key]['selected'] = $selected;
+        //     }
+        //     // print_r($new_option);
 
-                echo $selected;
+        //     $option = $new_option;
+        // }
 
-                // $new_option[$key]['value'] = $value['value'];
-                // $new_option[$key]['title'] = $value['title'];
-                // $new_option[$key]['selected'] = $selected;
-            }
-            $option = $new_option;
-
-            // print_r($option);
-            die;
-        }
-
-        die;
-
-        $group['country'] = $this->getElements(
-            [
-                "id" => "country",
-                "title" => "Quốc Gia"
-            ],
-            [
-                "type" => "select",
-                "options" => $option,
-                "error" => "Pays incorrect"
-            ]
-        );
+        // $group['country'] = $this->getElements(
+        //     [
+        //         "id" => "country",
+        //         "title" => "Quốc Gia"
+        //     ],
+        //     [
+        //         "type" => "select",
+        //         "options" => $option,
+        //         "error" => "Pays incorrect"
+        //     ]
+        // );
 
         return [
             "config"=>[

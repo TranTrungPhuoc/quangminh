@@ -7,11 +7,11 @@ class User extends Sql {
     protected Int $id = 0;
     protected String $firstname;
     protected String $lastname;
-    protected String $country;
+    // protected String $country;
     protected String $email;
     protected String $password;
     protected String $status='FALSE';
-    protected $date_updated;
+    // protected $date_updated;
 
     /**
      * @return int
@@ -64,18 +64,18 @@ class User extends Sql {
     /**
      * @return String
      */
-    public function getCountry(): string
-    {
-        return $this->country;
-    }
+    // public function getCountry(): string
+    // {
+    //     return $this->country;
+    // }
 
     /**
      * @param String $country
      */
-    public function setCountry(string $country): void
-    {
-        $this->country = strtoupper(trim($country));
-    }
+    // public function setCountry(string $country): void
+    // {
+    //     $this->country = strtoupper(trim($country));
+    // }
 
     /**
      * @return String
@@ -128,16 +128,16 @@ class User extends Sql {
     /**
      * @return int
      */
-    public function getDateUpdated()
-    {
-        return $this->date_updated;
-    }
+    // public function getDateUpdated()
+    // {
+    //     return $this->date_updated;
+    // }
 
     /**
      * @param int $updated
      */
-    public function setDateUpdated($date_updated): void
-    {
-        $this->date_updated = $date_updated;
-    }
+    // public function setDateUpdated($date_updated): void
+    // {
+    //     $this->date_updated = $date_updated;
+    // }
 }

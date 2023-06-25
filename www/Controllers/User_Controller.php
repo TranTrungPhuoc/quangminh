@@ -21,9 +21,12 @@ class User_Controller {
 
     function insert(): void
     {
+        // hiển thị view
         $form = new FormUser();
         $view = new View($this->folder."/form", "back");
         $view->assign('form', $form->getConfig());
+        // end
+
         $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
         
         if($form->isSubmit())
@@ -33,7 +36,7 @@ class User_Controller {
             $email = $_POST["email"];
             $pwd = $_POST["pwd"];
             $pwdConfirm = $_POST["pwdConfirm"];
-            $country = $_POST["country"];
+            // $country = $_POST["country"];
 
             $user = new User();
 
@@ -41,7 +44,11 @@ class User_Controller {
             $user->setLastname($lastname);
             $user->setEmail($email);
             $user->setPassword($pwd);
-            $user->setCountry($country);
+            // $user->setCountry($country);
+
+            // print_r($user);die;
+
+
             $user->save();
 
             header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/index');
@@ -64,16 +71,16 @@ class User_Controller {
             $firstname = $_POST["firstname"];
             $lastname = $_POST["lastname"];
             $email = $_POST["email"];
-            $country = $_POST["country"];
+            // $country = $_POST["country"];
 
             $user = new User();
 
             $user->setFirstname($firstname);
             $user->setLastname($lastname);
             $user->setEmail($email);
-            $user->setCountry($country);
+            // $user->setCountry($country);
             $user->setId($_GET['id']);
-            $user->setDateUpdated(date("Y/m/d H:i:s").'.'.floor(microtime(true)/ 10000));
+            // $user->setDateUpdated(date("Y/m/d H:i:s").'.'.floor(microtime(true)/ 10000));
             $user->save();
 
             header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/update?id='.$user->getId());
@@ -101,6 +108,27 @@ class User_Controller {
         $user->status();
 
         echo $result;
+    }
+
+    function login() {
+        $view = new View($this->folder."/login", "login");
+    }
+
+    function processlogin() {
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $user = new User();
+        $user->setEmail($email);
+
+        $check_email = $user->checkEmail();
+        print_r($check_email);die;
+
+        $user->setPassword($password);
+        $user->setStatus('TRUE');
+
+        // $user->checkEmai();
     }
 }
 ?>
