@@ -36,26 +36,11 @@ abstract class Sql{
 
     public function checkEmail(): array
     {
-        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'" WHERE email=\'' . $this->getEmail() . '\'');
-        // print_r($queryPrepared);die;
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'" WHERE status=TRUE AND email=\'' . $this->getEmail() . '\'');
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
-
-    // public function checkEmail(): array
-    // {
-    //     $query = 'SELECT * FROM public."' . $this->table . '" WHERE email = :email';
-        
-    //     $stmt = $this->pdo->prepare($query);
-
-    //     $stmt->bindParam(':email', $this->getEmail(), \PDO::PARAM_ARRAY);
-    //     $stmt->execute();
-        
-    //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    //     return $result;
-    // }
-
 
     public function checkLogin(): array
     {
@@ -85,11 +70,7 @@ abstract class Sql{
         }else{
             $columnString = implode(',', array_keys($columns));
             $valueString = implode(',', array_fill(0, count($columns), '?'));
-            // print_r($columns);die;
-        // print_r(array_values($columns));
-        // die;
             $queryPrepared = $this->pdo->prepare('INSERT INTO "public"."'.$this->table.'" ('.$columnString.') VALUES ('.$valueString.')');
-            // print_r($queryPrepared);die;
         }
         $queryPrepared->execute(array_values($columns));
     }

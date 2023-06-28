@@ -26,17 +26,19 @@
         $(document).ready(function () {
             $('#formLogin').on('submit', function (e) {
                 e.preventDefault();
-
                 const email = $('#Email').val()
                 const password = $('#Password').val()
-
                 // gửi ajax
                 $.ajax({
-                    url: 'http://localhost/processlogin',
+                    url: '/processlogin',
                     type: 'POST',
                     data: {email, password},
                     success: function (result) {
-                        console.log(result);
+                        if(result == 'Logged in successfully'){
+                            window.location.href = '/admin/dashboard/index';
+                        }else{
+                            alert(result);
+                        }
                     }
                 });
                 return false;

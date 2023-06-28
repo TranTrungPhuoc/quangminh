@@ -74,9 +74,9 @@
   controller: User_Controller
   action: processlogin
 
-# /logout:
-#   controller: Security
-#   action: logout
+/logout:
+  controller: User_Controller
+  action: logout
 
 /register:
   controller: Security
