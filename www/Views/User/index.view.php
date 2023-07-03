@@ -3,10 +3,9 @@
         <div class="card">
             <div class="card-header">
                 <h5>
-                    Bảng Dữ Liệu
-                    <a href="/admin/user/insert" class="btn btn-sm btn-outline-primary has-ripple">
+                    <a href="/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2]; ?>/insert" class="btn btn-sm btn-outline-primary has-ripple">
                         <i class="feather icon-plus"></i>
-                        Thêm Mới
+                        Add New
                     </a>
                 </h5>
             </div>
@@ -35,14 +34,14 @@
                                 <td><?php echo $value['date_inserted']; ?></td>
                                 <td><input type="checkbox" class="status_<?php echo $value['id']; ?>" onclick="script_status('<?php echo $value['id']; ?>')" <?php echo $checked; ?>></td>
                                 <td>
-                                    <a href="/admin/user/update?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-outline-info has-ripple">
+                                    <a href="/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2]; ?>/update?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-outline-info has-ripple">
                                         <i class="feather icon-edit"></i>
-                                        Sửa
+                                        Edit
                                     </a>
                                     <button type="button" class="btn btn-sm btn-outline-danger has-ripple" 
                                         data-bs-toggle="modal" data-bs-target="#popup_delete" onclick="getName('<?php echo $value['id']; ?>','<?php echo $value['lastname'].' '.$value['firstname']; ?>')">
                                         <i class="feather icon-trash"></i>
-                                        Xóa
+                                        Delete
                                     </button>
                                 </td>
                             </tr>

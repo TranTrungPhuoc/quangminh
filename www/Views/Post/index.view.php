@@ -1,134 +1,55 @@
-<!-- [ Main Content ] start -->
 <div class="row">
-    <!-- Zero config table start -->
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
                 <h5>
-                    Bảng Dữ Liệu
-                    <a href="/admin/user/insert" class="btn btn-sm btn-outline-primary has-ripple">
+                    <a href="/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2]; ?>/insert" class="btn btn-sm btn-outline-primary has-ripple">
                         <i class="feather icon-plus"></i>
-                        Thêm Mới
+                        Add New
                     </a>
                 </h5>
-                
             </div>
             <div class="card-body">
+                <div class="alert alert-success alert-dismissible fade show" style="display:none;" role="alert"></div>
                 <div class="dt-responsive table-responsive">
-                    <table id="simpletable" class="table table-striped table-bordered nowrap">
+                    <table id="simpletable" class="table table-striped table-bordered nowrap text-center">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>title</th>
+                                <th>slug</th>
+                                <th>parents</th>
+                                <th>Date Inserted</th>
+                                <th>Active</th>
+                                <th>Function</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Quinn Flynn</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
+                            <?php foreach ($table as $key => $value) { 
+                                $checked = ($value['status']==1) ? 'checked' : '';
+                            ?>
+                            <tr id="tr_<?php echo $value['id']; ?>">
+                                <td><?php echo $value['title']; ?></td>
+                                <td><?php echo $value['slug']; ?></td>
+                                <td><?php echo $value['parents']; ?></td>
+                                <td><?php echo $value['date_inserted']; ?></td>
+                                <td><input type="checkbox" class="status_<?php echo $value['id']; ?>" onclick="script_status('<?php echo $value['id']; ?>')" <?php echo $checked; ?>></td>
                                 <td>
-                                    <a href="/admin/user/edit/1" class="btn btn-sm btn-outline-info has-ripple">
+                                    <a href="/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2]; ?>/update?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-outline-info has-ripple">
                                         <i class="feather icon-edit"></i>
-                                        Sửa
+                                        Edit
                                     </a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger has-ripple">
+                                    <button type="button" class="btn btn-sm btn-outline-danger has-ripple" 
+                                        data-bs-toggle="modal" data-bs-target="#popup_delete" onclick="getName('<?php echo $value['id']; ?>','<?php echo $value['title']; ?>')">
                                         <i class="feather icon-trash"></i>
-                                        Xóa
+                                        Delete
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011/07/25</td>
-                                <td>
-                                    <a href="/admin/user/edit/1" class="btn btn-sm btn-outline-info has-ripple">
-                                        <i class="feather icon-edit"></i>
-                                        Sửa
-                                    </a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger has-ripple">
-                                        <i class="feather icon-trash"></i>
-                                        Xóa
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>66</td>
-                                <td>2009/01/12</td>
-                                <td>
-                                    <a href="/admin/user/edit/1" class="btn btn-sm btn-outline-info has-ripple">
-                                        <i class="feather icon-edit"></i>
-                                        Sửa
-                                    </a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger has-ripple">
-                                        <i class="feather icon-trash"></i>
-                                        Xóa
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>22</td>
-                                <td>2012/03/29</td>
-                                <td>
-                                    <a href="/admin/user/edit/1" class="btn btn-sm btn-outline-info has-ripple">
-                                        <i class="feather icon-edit"></i>
-                                        Sửa
-                                    </a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger has-ripple">
-                                        <i class="feather icon-trash"></i>
-                                        Xóa
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>33</td>
-                                <td>2008/11/28</td>
-                                <td>
-                                    <a href="/admin/user/edit/1" class="btn btn-sm btn-outline-info has-ripple">
-                                        <i class="feather icon-edit"></i>
-                                        Sửa
-                                    </a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger has-ripple">
-                                        <i class="feather icon-trash"></i>
-                                        Xóa
-                                    </button>
-                                </td>
-                            </tr>
-
+                            <?php }?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Zero config table end -->
 </div>
-<!-- [ Main Content ] end -->

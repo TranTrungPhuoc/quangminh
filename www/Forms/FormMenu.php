@@ -11,49 +11,29 @@ class FormMenu extends AForm {
     {
         $group = [];
 
-        $group['name'] = $this->getInput(
-            [ "title" => "Name" ],
+        $group['title'] = $this->getElements(
+            [ "title" => "title" ],
             [
                 "type"=>"text",
-                "placeholder"=>"Name",
+                "placeholder"=>"title",
                 "min"=>2,
                 "max"=>60,
-                "value"=> ($row)?trim($row[0]['name']):'',
+                "value"=> ($row)?trim($row[0]['title']):'',
                 "required" => "required",
                 "error"=>"Votre prénom doit faire entre 2 et 60 caractères"
             ]
         );
 
-        $group['link'] = $this->getInput(
-            [ "title" => "Link" ],
+        $group['link'] = $this->getElements(
+            [ "title" => "link" ],
             [
                 "type"=>"text",
-                "placeholder"=>"Link",
+                "placeholder"=>"link",
                 "min"=>2,
                 "max"=>120,
-                "value"=> ($row)?trim($row[0]['lastname']):'',
+                "value"=> ($row)?trim($row[0]['link']):'',
                 "required" => "required",
                 "error"=>"Votre nom doit faire entre 2 et 120 caractères"
-            ]
-        );
-
-        $group['location'] = $this->getInput(
-            [ "title" => "Location" ],
-            [
-                "type"=>"select",
-                "options"=>["Top","Bottom"],
-                "error"=>"Pays incorrect"
-            ]
-        );
-
-        $group['topic'] = $this->getInput(
-            [ "title" => "Topic" ],
-            [
-                "type"=>"text",
-                "placeholder"=>"Topic",
-                "required" => "required",
-                "value"=> ($row)?trim($row[0]['topic']):'',
-                "error"=>"Le format de votre email est incorrect"
             ]
         );
 

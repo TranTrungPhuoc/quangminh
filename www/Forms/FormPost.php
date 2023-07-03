@@ -11,51 +11,77 @@ class FormPost extends AForm {
     {
         $group = [];
 
-        $group['name'] = $this->getInput(
-            [ "title" => "Name" ],
+        $group['title'] = $this->getElements(
+            [ "title" => "title" ],
             [
                 "type"=>"text",
-                "placeholder"=>"Name",
+                "placeholder"=>"title",
                 "min"=>2,
                 "max"=>60,
-                "value"=> ($row)?trim($row[0]['name']):'',
+                "value"=> ($row)?trim($row[0]['title']):'',
                 "required" => "required",
+                "event" => "onkeyup",
                 "error"=>"Votre prénom doit faire entre 2 et 60 caractères"
             ]
         );
 
-        $group['slug'] = $this->getInput(
-            [ "title" => "Slug" ],
+        $group['slug'] = $this->getElements(
+            [ "title" => "slug" ],
             [
                 "type"=>"text",
-                "placeholder"=>"Slug",
+                "placeholder"=>"slug",
                 "min"=>2,
-                "max"=>60,
+                "max"=>120,
                 "value"=> ($row)?trim($row[0]['slug']):'',
                 "required" => "required",
-                "error"=>"Votre prénom doit faire entre 2 et 60 caractères"
+                "event" => "",
+                "error"=>"Votre nom doit faire entre 2 et 120 caractères"
             ]
         );
 
-        $group['image'] = $this->getInput(
-            [ "title" => "Image" ],
-            [
-                "type"=>"text",
-                "placeholder"=>"Image",
-                "min"=>2,
-                "max"=>60,
-                "value"=> ($row)?trim($row[0]['image']):'',
-                "required" => "required",
-                "error"=>"Votre prénom doit faire entre 2 et 60 caractères"
-            ]
-        );
+        $option = [
+            // [
+            //     "value" => 0,
+            //     "title" => "",
+            //     "selected" => ""
+            // ],
+            // [
+            //     "value" => "FR",
+            //     "title" => "FR",
+            //     "selected" => ""
+            // ],
+            // [
+            //     "value" => "PL",
+            //     "title" => "PL",
+            //     "selected" => ""
+            // ]
+        ];
+        
+        if($row){
+            $new_option = [];
+            foreach ($option as $key => $value) {
+                $selected = '';
+                if($value['value'] == $row[0]['country']){
+                    $selected = 'selected';
+                }
+                $new_option[$key]['value'] = $value['value'];
+                $new_option[$key]['title'] = $value['title'];
+                $new_option[$key]['selected'] = $selected;
+            }
+            // print_r($new_option);
 
-        $group['parents'] = $this->getInput(
-            [ "title" => "Parents" ],
+            $option = $new_option;
+        }
+
+        $group['parents'] = $this->getElements(
             [
-                "type"=>"select",
-                "options"=>["Category 1","Category 2"],
-                "error"=>"Pays incorrect"
+                "id" => "parents",
+                "title" => "parents"
+            ],
+            [
+                "type" => "select",
+                "options" => $option,
+                "error" => "Parents incorrect"
             ]
         );
 

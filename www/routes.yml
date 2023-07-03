@@ -27,57 +27,73 @@
   action: status
 
 /admin/category/index:
-  controller: Category
+  controller: Category_Controller
   action: index
 
 /admin/category/insert:
-  controller: Category
+  controller: Category_Controller
   action: insert
 
 /admin/category/update:
-  controller: Category
+  controller: Category_Controller
   action: update
 
 /admin/category/delete:
-  controller: Category
+  controller: Category_Controller
   action: delete
 
+/admin/category/status:
+  controller: Category_Controller
+  action: status
+
 /admin/post/index:
-  controller: Post
+  controller: Post_Controller
   action: index
 
 /admin/post/insert:
-  controller: Post
+  controller: Post_Controller
   action: insert
 
 /admin/post/update:
-  controller: Post
+  controller: Post_Controller
   action: update
 
 /admin/post/delete:
-  controller: Post
+  controller: Post_Controller
   action: delete
 
-# /admin/post/index:
-#   controller: Main
-#   action: post
+/admin/post/status:
+  controller: Post_Controller
+  action: status
 
-# /contact:
-#   controller: Main
-#   action: contact
+/admin/menu/index:
+  controller: Menu_Controller
+  action: index
+
+/admin/menu/insert:
+  controller: Menu_Controller
+  action: insert
+
+/admin/menu/update:
+  controller: Menu_Controller
+  action: update
+
+/admin/menu/delete:
+  controller: Menu_Controller
+  action: delete
+
+/admin/menu/status:
+  controller: Menu_Controller
+  action: status
 
 /login:
-  controller: User_Controller
+  controller: Security_Controller
   action: login
 
 /processlogin:
-  controller: User_Controller
+  controller: Security_Controller
   action: processlogin
 
 /logout:
-  controller: User_Controller
+  controller: Security_Controller
   action: logout
-
-/register:
-  controller: Security
-  action: register

@@ -5,11 +5,9 @@ use App\Core\Sql;
 class Menu extends Sql {
 
     protected Int $id = 0;
-    protected String $name;
+    protected String $title;
     protected String $link;
-    protected String $location;
-    protected String $topic;
-    protected Int $status = 0;
+    protected String $status;
 
     /**
      * @return int
@@ -30,17 +28,17 @@ class Menu extends Sql {
     /**
      * @return String
      */
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param String $name
+     * @param String $title
      */
-    public function setName(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = ucwords(strtolower(trim($name)));
+        $this->title = ucwords(strtolower(trim($title)));
     }
 
     /**
@@ -60,49 +58,17 @@ class Menu extends Sql {
     }
 
     /**
-     * @return String
-     */
-    public function getLocation(): string
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param String $location
-     */
-    public function setLocation(string $location): void
-    {
-        $this->location = strtoupper(trim($location));
-    }
-
-    /**
-     * @return String
-     */
-    public function getTopic(): string
-    {
-        return $this->topic;
-    }
-
-    /**
-     * @param String $topic
-     */
-    public function setTopic(string $topic): void
-    {
-        $this->topic = strtolower(trim($topic));
-    }
-
-    /**
      * @return int
      */
-    public function getStatus(): int
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
+    /**EVENT_MAIN
      * @param int $status
      */
-    public function setStatus(int $status): void
+    public function setStatus(string $status): void
     {
         $this->status = $status;
     }

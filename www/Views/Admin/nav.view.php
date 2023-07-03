@@ -6,13 +6,13 @@
                 <div class="main-menu-header">
                     <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
                     <div class="user-details">
-                        <div id="more-details">UX Designer <i class="fa fa-caret-down"></i></div>
+                        <div id="more-details"><?php echo $_SESSION["user"]['firstname']; ?> <i class="fa fa-caret-down"></i></div>
                     </div>
                 </div>
                 <div class="collapse" id="nav-user-link">
                     <ul class="list-inline">
                         <li class="list-inline-item">
-                            <a href="/" data-toggle="tooltip" title="View Profile"><i class="feather icon-user"></i></a>
+                            <a href="/admin/user/update?id=<?php echo $_SESSION["user"]["id"]; ?>" data-toggle="tooltip" title="View Profile"><i class="feather icon-user"></i></a>
                         </li>
                         <li class="list-inline-item">
                             <a href="/">
@@ -21,7 +21,7 @@
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="/" data-toggle="tooltip" title="Logout" class="text-danger">
+                            <a href="/logout" data-toggle="tooltip" title="Logout" class="text-danger">
                                 <i class="feather icon-power"></i>
                             </a>
                         </li>
@@ -31,18 +31,16 @@
             
             <?php
                 $nav = [
-                    array("title"=>"Bảng Điều Khiển", "icon"=>"home", "link"=>"dashboard"),
-                    array("title"=>"Danh Mục", "icon"=>"menu", "link"=>"category"),
-                    array("title"=>"Bài Viết", "icon"=>"globe", "link"=>"post"),
+                    array("title"=>"Dashboard", "icon"=>"home", "link"=>"dashboard"),
+                    array("title"=>"Category", "icon"=>"menu", "link"=>"category"),
+                    array("title"=>"Post", "icon"=>"globe", "link"=>"post"),
                     array("title"=>"Menu", "icon"=>"navigation", "link"=>"menu"),
-                    array("title"=>"Thành Viên", "icon"=>"users", "link"=>"user")
+                    array("title"=>"User", "icon"=>"users", "link"=>"user")
                 ];
             ?>
 
             <ul class="nav pcoded-inner-navbar ">
-                <li class="nav-item pcoded-menu-caption">
-                    <label>Danh Mục Chính</label>
-                </li>
+                <li class="nav-item pcoded-menu-caption"></li>
                 <?php
                     $str='';
                     foreach ($nav as $key => $value) {
@@ -56,16 +54,6 @@
                     echo $str;
                 ?>
             </ul>
-            
-            <div class="card text-center">
-                <div class="card-block">
-                    <button type="button" class="btn-close" data-dismiss="alert" aria-hidden="true"></button>
-                    <i class="feather icon-sunset f-40"></i>
-                    <h6 class="mt-3">Help?</h6>
-                    <p>Please contact us on our email for need any support</p>
-                    <a href="#!" target="_blank" class="btn btn-primary btn-sm text-white m-0">Support</a>
-                </div>
-            </div>
             
         </div>
     </div>

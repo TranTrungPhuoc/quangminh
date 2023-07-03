@@ -5,10 +5,10 @@ use App\Core\Sql;
 class Category extends Sql {
 
     protected Int $id = 0;
-    protected String $name;
+    protected String $title;
     protected String $slug;
-    protected String $parents;
-    protected Int $status = 'FALSE';
+    protected Int $parents = 0;
+    protected String $status;
 
     /**
      * @return int
@@ -29,17 +29,17 @@ class Category extends Sql {
     /**
      * @return String
      */
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param String $name
+     * @param String $title
      */
-    public function setName(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = ucwords(strtolower(trim($name)));
+        $this->title = ucwords(strtolower(trim($title)));
     }
 
     /**
@@ -59,33 +59,33 @@ class Category extends Sql {
     }
 
     /**
-     * @return String
+     * @return Int
      */
-    public function getParents(): string
+    public function getParents(): int
     {
         return $this->parents;
     }
 
     /**
-     * @param String $parents
+     * @param Int $parents
      */
-    public function setParents(string $parents): void
+    public function setParents(int $parents): void
     {
-        $this->parents = strtoupper(trim($parents));
+        $this->parents = $parents;
     }
 
     /**
      * @return int
      */
-    public function getStatus(): int
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
+    /**EVENT_MAIN
      * @param int $status
      */
-    public function setStatus(int $status): void
+    public function setStatus(string $status): void
     {
         $this->status = $status;
     }

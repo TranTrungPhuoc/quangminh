@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>Thêm Thành Viên</h5>
+                <h5>ADD <?php echo strtoupper(explode('/',$_SERVER['REQUEST_URI'])[2]); ?></h5>
             </div>
             <div class="card-body">
                 <form action="" method="<?php echo $form['config']['method']?>">
@@ -39,10 +39,10 @@
                         <?php endforeach; ?>
                     </div>
                     <button type="submit" class="btn btn-outline-primary has-ripple">
-                        Lưu
+                        Save
                     </button>
-                    <a href="/admin/user/<?php echo $form['config']['cancel']?>" class="btn btn-outline-secondary has-ripple">
-                        Thoát
+                    <a href="/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2].'/'.$form['config']['cancel']?>" class="btn btn-outline-secondary has-ripple">
+                        Exit
                     </a>
                 </form>
             </div>

@@ -1,5 +1,6 @@
 <?php
 namespace App\Controllers;
+session_start();
 use App\Core\View;
 
 class Dashboard{
