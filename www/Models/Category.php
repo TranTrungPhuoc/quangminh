@@ -8,7 +8,7 @@ class Category extends Sql {
     protected String $name;
     protected String $slug;
     protected String $parents;
-    protected Int $status = 0;
+    protected Int $status = 'FALSE';
 
     /**
      * @return int

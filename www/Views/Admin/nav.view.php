@@ -11,9 +11,20 @@
                 </div>
                 <div class="collapse" id="nav-user-link">
                     <ul class="list-inline">
-                        <li class="list-inline-item"><a href="user-profile.html" data-toggle="tooltip" title="View Profile"><i class="feather icon-user"></i></a></li>
-                        <li class="list-inline-item"><a href="email_inbox.html"><i class="feather icon-mail" data-toggle="tooltip" title="Messages"></i><small class="badge badge-pill badge-primary">5</small></a></li>
-                        <li class="list-inline-item"><a href="auth-signin.html" data-toggle="tooltip" title="Logout" class="text-danger"><i class="feather icon-power"></i></a></li>
+                        <li class="list-inline-item">
+                            <a href="/" data-toggle="tooltip" title="View Profile"><i class="feather icon-user"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="/">
+                                <i class="feather icon-mail" data-toggle="tooltip" title="Messages"></i>
+                                <small class="badge badge-pill badge-primary">5</small>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="/" data-toggle="tooltip" title="Logout" class="text-danger">
+                                <i class="feather icon-power"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -21,7 +32,9 @@
             <?php
                 $nav = [
                     array("title"=>"Bảng Điều Khiển", "icon"=>"home", "link"=>"dashboard"),
+                    array("title"=>"Danh Mục", "icon"=>"menu", "link"=>"category"),
                     array("title"=>"Bài Viết", "icon"=>"globe", "link"=>"post"),
+                    array("title"=>"Menu", "icon"=>"navigation", "link"=>"menu"),
                     array("title"=>"Thành Viên", "icon"=>"users", "link"=>"user")
                 ];
             ?>
@@ -30,7 +43,6 @@
                 <li class="nav-item pcoded-menu-caption">
                     <label>Danh Mục Chính</label>
                 </li>
-                
                 <?php
                     $str='';
                     foreach ($nav as $key => $value) {
