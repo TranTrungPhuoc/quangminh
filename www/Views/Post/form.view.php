@@ -20,8 +20,17 @@
                                     </select>
                                 </div>
                             </div>
+                            <?php elseif($value['elements']['type'] == "textarea"): ?>
+                            <div class="col-md-<?php echo $value['elements']['col']; ?>">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <?php echo $value['labels']['title']; ?>
+                                    </label>
+                                    <textarea class="form-control" name="<?php echo $key; ?>" id="<?php echo $key; ?>" rows="2"><?php echo $value['elements']['value']; ?></textarea>
+                                </div>
+                            </div>
                             <?php else: ?>
-                            <div class="col-md-4">
+                            <div class="col-md-<?php echo $value['elements']['col']; ?>">
                                 <div class="form-group">
                                     <label class="form-label">
                                         <?php echo $value['labels']['title']; ?>
@@ -46,6 +55,7 @@
                             <?php endif;?>
                         <?php endforeach; ?>
                     </div>
+                    <hr>
                     <button type="submit" class="btn btn-outline-primary has-ripple">
                         Save
                     </button>

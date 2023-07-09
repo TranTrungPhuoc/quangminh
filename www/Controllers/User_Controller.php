@@ -71,7 +71,7 @@ class User_Controller {
             $model->setId($_GET['id']);
             $model->save();
             
-            header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/update?id='.$user->getId());
+            header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/update?id='.$model->getId());
             exit();
         }
     }

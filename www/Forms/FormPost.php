@@ -7,7 +7,7 @@ class FormPost extends AForm {
 
     protected $method = "POST";
 
-    public function getConfig($row=[]): array
+    public function getConfig($row=[], $category=[]): array
     {
         $group = [];
 
@@ -18,6 +18,7 @@ class FormPost extends AForm {
                 "placeholder"=>"title",
                 "min"=>2,
                 "max"=>60,
+                "col"=>4,
                 "value"=> ($row)?trim($row[0]['title']):'',
                 "required" => "required",
                 "event" => "onkeyup",
@@ -32,6 +33,7 @@ class FormPost extends AForm {
                 "placeholder"=>"slug",
                 "min"=>2,
                 "max"=>120,
+                "col"=>4,
                 "value"=> ($row)?trim($row[0]['slug']):'',
                 "required" => "required",
                 "event" => "",
@@ -39,49 +41,61 @@ class FormPost extends AForm {
             ]
         );
 
-        $option = [
-            // [
-            //     "value" => 0,
-            //     "title" => "",
-            //     "selected" => ""
-            // ],
-            // [
-            //     "value" => "FR",
-            //     "title" => "FR",
-            //     "selected" => ""
-            // ],
-            // [
-            //     "value" => "PL",
-            //     "title" => "PL",
-            //     "selected" => ""
-            // ]
-        ];
-        
-        if($row){
-            $new_option = [];
-            foreach ($option as $key => $value) {
+        $option = [];
+        if($category){
+            foreach ($category as $key => $value) {
                 $selected = '';
-                if($value['value'] == $row[0]['country']){
-                    $selected = 'selected';
+                if($row){
+                    if($value['id'] == $row[0]['parents']){
+                        $selected = 'selected';
+                    }
                 }
-                $new_option[$key]['value'] = $value['value'];
-                $new_option[$key]['title'] = $value['title'];
-                $new_option[$key]['selected'] = $selected;
+                $option[$key]['value'] = $value['id'];
+                $option[$key]['title'] = $value['title'];
+                $option[$key]['selected'] = $selected;
             }
-            // print_r($new_option);
-
-            $option = $new_option;
         }
 
         $group['parents'] = $this->getElements(
             [
                 "id" => "parents",
-                "title" => "parents"
+                "title" => "parents",
+                "col"=>4,
             ],
             [
                 "type" => "select",
                 "options" => $option,
                 "error" => "Parents incorrect"
+            ]
+        );
+
+        $group['description'] = $this->getElements(
+            [ "title" => "description" ],
+            [
+                "type"=>"textarea",
+                "placeholder"=>"description",
+                "min"=>2,
+                "max"=>120,
+                "col"=>12,
+                "value"=> ($row)?trim($row[0]['description']):'',
+                "required" => "required",
+                "event" => "",
+                "error"=>"Votre nom doit faire entre 2 et 120 caractères"
+            ]
+        );
+
+        $group['content'] = $this->getElements(
+            [ "title" => "content" ],
+            [
+                "type"=>"textarea",
+                "placeholder"=>"content",
+                "min"=>2,
+                "max"=>120,
+                "col"=>12,
+                "value"=> ($row)?trim($row[0]['content']):'',
+                "required" => "required",
+                "event" => "",
+                "error"=>"Votre nom doit faire entre 2 et 120 caractères"
             ]
         );
 

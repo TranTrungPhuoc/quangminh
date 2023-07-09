@@ -85,5 +85,14 @@ class Menu_Controller {
         $model->status();
         echo $result;
     }
+
+    function sort(){
+        $model = new Menu();
+        $model->setId($_POST["id"]);
+        $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
+        $model->setSort($_POST['sort']);
+        $model->sort();
+        echo $result;
+    }
 }
 ?>

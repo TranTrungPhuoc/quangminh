@@ -20,6 +20,7 @@ class FormCategory extends AForm {
                 "max"=>60,
                 "value"=> ($row)?trim($row[0]['title']):'',
                 "required" => "required",
+                "event" => "onkeyup",
                 "error"=>"Votre prénom doit faire entre 2 et 60 caractères"
             ]
         );
@@ -32,6 +33,7 @@ class FormCategory extends AForm {
                 "min"=>2,
                 "max"=>120,
                 "value"=> ($row)?trim($row[0]['slug']):'',
+                "event" => "",
                 "required" => "required",
                 "error"=>"Votre nom doit faire entre 2 et 120 caractères"
             ]

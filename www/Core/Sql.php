@@ -18,17 +18,20 @@ abstract class Sql{
         $this->table = "esgi_".$this->table;
     }
 
-    public function getList(): array
+    public function getList($table='', $sort='sort', $value_sort='ASC'): array
     {
-        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'" ORDER BY id DESC');
+        $newTable = ($table != '') ? $table : $this->table;
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" ORDER BY '.$sort.' '.$value_sort);
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getDetail(): array
+    public function getDetail($table='', $id=''): array
     {
-        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'" WHERE id='.$this->getId());
+        $newTable = ($table != '') ? $table : $this->table;
+        $newId = ($id != '') ? $id : $this->getId();
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" WHERE id='.$newId);
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
@@ -45,10 +48,6 @@ abstract class Sql{
     public function checkLogin(): array
     {
         $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'" WHERE email='.$this->getEmail().' AND password='.$this->getPassword().' AND status='.$this->getStatus());
-        
-        print_r($queryPrepared);
-        die;
-        
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
@@ -82,6 +81,11 @@ abstract class Sql{
 
     public function status() {
         $queryPrepared = $this->pdo->prepare('UPDATE "public"."'.$this->table.'" SET status='.$this->getStatus().' WHERE id='.$this->getId());
+        $queryPrepared->execute();
+    }
+
+    public function sort() {
+        $queryPrepared = $this->pdo->prepare('UPDATE "public"."'.$this->table.'" SET sort='.$this->getSort().' WHERE id='.$this->getId());
         $queryPrepared->execute();
     }
 }

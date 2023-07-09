@@ -15,6 +15,7 @@
                     <table id="simpletable" class="table table-striped table-bordered nowrap text-center">
                         <thead>
                             <tr>
+                                <th>sort</th>
                                 <th>title</th>
                                 <th>link</th>
                                 <th>Date Inserted</th>
@@ -23,13 +24,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($table as $key => $value) { 
+                            <?php $total=count($table); foreach ($table as $key => $value) { 
                                 $checked = ($value['status']==1) ? 'checked' : '';
                             ?>
                             <tr id="tr_<?php echo $value['id']; ?>">
+                                <td>
+                                    <select class="form-select" id="sort_<?php echo $value['id']; ?>" onchange="updateSort('<?php echo $value['id']; ?>')">
+                                        <?php for ($i=1; $i <= $total; $i++) { 
+                                            $selected = ($i == $value['sort']) ? 'selected' : '';
+                                            echo '<option value="'.$i.'" '.$selected.'>'.$i.'</option>';
+                                        } ?>
+                                    </select>    
+                                </td>
                                 <td><?php echo $value['title']; ?></td>
                                 <td><?php echo $value['link']; ?></td>
-                                <td><?php echo $value['date_inserted']; ?></td>
+                                <td><?php $date = explode(' ', $value['date_inserted']); echo $date[0]; ?></td>
                                 <td><input type="checkbox" class="status_<?php echo $value['id']; ?>" onclick="script_status('<?php echo $value['id']; ?>')" <?php echo $checked; ?>></td>
                                 <td>
                                     <a href="/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2]; ?>/update?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-outline-info has-ripple">

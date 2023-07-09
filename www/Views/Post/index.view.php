@@ -1,3 +1,7 @@
+<?php
+use App\Models\Post;
+$model = new Post();
+?>
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -16,22 +20,25 @@
                         <thead>
                             <tr>
                                 <th>title</th>
-                                <th>slug</th>
-                                <th>parents</th>
+                                <th>category</th>
+                                <th>user</th>
                                 <th>Date Inserted</th>
                                 <th>Active</th>
                                 <th>Function</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($table as $key => $value) { 
+                            <?php 
+                                foreach ($table as $key => $value) { 
                                 $checked = ($value['status']==1) ? 'checked' : '';
+                                $category = $model->getDetail('esgi_Category', $value['parents']);
+                                $user = $model->getDetail('esgi_User', $value['userid']);
                             ?>
                             <tr id="tr_<?php echo $value['id']; ?>">
                                 <td><?php echo $value['title']; ?></td>
-                                <td><?php echo $value['slug']; ?></td>
-                                <td><?php echo $value['parents']; ?></td>
-                                <td><?php echo $value['date_inserted']; ?></td>
+                                <td><?php echo ($category) ? '<span class="badge bg-warning">'.$category[0]['title'].'</span>':''; ?></td>
+                                <td><?php echo ($user) ? '<span class="badge bg-success">'.$user[0]['firstname'].' '.$user[0]['lastname'].'</span>':''; ?></td>
+                                <td><?php $date = explode(' ', $value['date_inserted']); echo $date[0]; ?></td>
                                 <td><input type="checkbox" class="status_<?php echo $value['id']; ?>" onclick="script_status('<?php echo $value['id']; ?>')" <?php echo $checked; ?>></td>
                                 <td>
                                     <a href="/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2]; ?>/update?id=<?php echo $value['id']; ?>" class="btn btn-sm btn-outline-info has-ripple">

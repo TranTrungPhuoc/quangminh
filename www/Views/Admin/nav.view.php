@@ -35,6 +35,7 @@
                     array("title"=>"Category", "icon"=>"menu", "link"=>"category"),
                     array("title"=>"Post", "icon"=>"globe", "link"=>"post"),
                     array("title"=>"Menu", "icon"=>"navigation", "link"=>"menu"),
+                    array("title"=>"Configs", "icon"=>"settings", "link"=>"configs"),
                     array("title"=>"User", "icon"=>"users", "link"=>"user")
                 ];
             ?>

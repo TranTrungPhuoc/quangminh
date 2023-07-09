@@ -2,6 +2,10 @@
   controller: Layout
   action: index
 
+/*:
+  controller: Layout
+  action: index
+
 /admin/dashboard/index:
   controller: Dashboard
   action: index
@@ -46,6 +50,10 @@
   controller: Category_Controller
   action: status
 
+/admin/category/sort:
+  controller: Category_Controller
+  action: sort
+
 /admin/post/index:
   controller: Post_Controller
   action: index
@@ -85,6 +93,10 @@
 /admin/menu/status:
   controller: Menu_Controller
   action: status
+
+/admin/menu/sort:
+  controller: Menu_Controller
+  action: sort
 
 /login:
   controller: Security_Controller

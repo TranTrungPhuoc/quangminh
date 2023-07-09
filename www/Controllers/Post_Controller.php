@@ -27,19 +27,27 @@ class Post_Controller {
 
     function insert()
     {
+        $model = new Post();
         $form = new FormPost();
         $view = new View($this->folder."/form", "back");
-        $view->assign('form', $form->getConfig());
+        $category = $model->getList('esgi_Category');
+        $view->assign('form', $form->getConfig([], $category));
         $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
         if($form->isSubmit())
         {
             $title = $_POST["title"];
             $slug = $_POST["slug"];
             $parents = $_POST["parents"];
-            $model = new Post();
+            $description = $_POST["description"];
+            $content = $_POST["content"];
+            
             $model->setTitle($title);
             $model->setSlug($slug);
             $model->setParents($parents);
+            $model->setDescription($description);
+            $model->setContent($content);
+            $model->setUserId($_SESSION["user"]['id']);
+
             $model->save();
             header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/index');
             exit();
@@ -53,15 +61,21 @@ class Post_Controller {
         $model->setId($_GET['id']);
         $row = $model->getDetail();
         $view = new View($this->folder."/form", "back");
-        $view->assign('form', $form->getConfig($row));
+        $category = $model->getList('esgi_Category');
+        $view->assign('form', $form->getConfig($row, $category));
         if($form->isSubmit())
         {
             $title = $_POST["title"];
             $slug = $_POST["slug"];
             $parents = $_POST["parents"];
+            $description = $_POST["description"];
+            $content = $_POST["content"];
             $model->setTitle($title);
             $model->setSlug($slug);
             $model->setParents($parents);
+            $model->setDescription($description);
+            $model->setContent($content);
+            $model->setUserId($_SESSION["user"]['id']);
             $model->setId($_GET['id']);
             $model->save();
             header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/update?id='.$model->getId());

@@ -109,6 +109,16 @@
         }
         return;
     }
+    function updateSort(id) {
+        const sort = $('#sort_'+id).val();
+        $.ajax({
+            url: '/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2]; ?>/sort',
+            type: 'POST',
+            data: { id, sort },
+            success: function (result) {}
+        })
+        return false;
+    }
     function to_slug(title, slug)
     {
         let str = document.getElementById(title).value;
@@ -140,4 +150,11 @@
 
         return;
     }
+</script>
+
+<!-- // ckeditor -->
+<script src="/assets/ckeditor/ckeditor.js"></script>
+<script>
+CKEDITOR.config.language = 'en';
+CKEDITOR.replace('content');
 </script>

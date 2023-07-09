@@ -9,6 +9,7 @@ class Category extends Sql {
     protected String $slug;
     protected Int $parents = 0;
     protected String $status;
+    protected String $sort;
 
     /**
      * @return int
@@ -88,5 +89,21 @@ class Category extends Sql {
     public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSort(): string
+    {
+        return $this->sort;
+    }
+
+    /**EVENT_MAIN
+     * @param int $status
+     */
+    public function setSort(string $sort): void
+    {
+        $this->sort = $sort;
     }
 }
