@@ -2,7 +2,7 @@
 namespace App\Controllers;
 use App\Core\View;
 use App\Models\LayoutModel;
-class Layout{
+class LayoutController{
     public function index(){
         $model = new LayoutModel();
         $menu = $model->getList('esgi_Menu');

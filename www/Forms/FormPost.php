@@ -99,6 +99,51 @@ class FormPost extends AForm {
             ]
         );
 
+        $group['canonical'] = $this->getElements(
+            [ "title" => "canonical" ],
+            [
+                "type"=>"text",
+                "placeholder"=>"canonical",
+                "min"=>2,
+                "max"=>120,
+                "col"=>4,
+                "value"=> ($row)?trim($row[0]['canonical']):'',
+                "required" => "required",
+                "event" => "",
+                "error"=>"Votre nom doit faire entre 2 et 120 caractères"
+            ]
+        );
+
+        $group['metatitle'] = $this->getElements(
+            [ "title" => "metatitle" ],
+            [
+                "type"=>"text",
+                "placeholder"=>"metatitle",
+                "min"=>2,
+                "max"=>120,
+                "col"=>4,
+                "value"=> ($row)?trim($row[0]['metatitle']):'',
+                "required" => "required",
+                "event" => "",
+                "error"=>"Votre nom doit faire entre 2 et 120 caractères"
+            ]
+        );
+
+        $group['metadescription'] = $this->getElements(
+            [ "title" => "metadescription" ],
+            [
+                "type"=>"text",
+                "placeholder"=>"metadescription",
+                "min"=>2,
+                "max"=>120,
+                "col"=>4,
+                "value"=> ($row)?trim($row[0]['metadescription']):'',
+                "required" => "required",
+                "event" => "",
+                "error"=>"Votre nom doit faire entre 2 et 120 caractères"
+            ]
+        );
+
         return [
             "config"=>[
                 "method"=>$this->getMethod(),

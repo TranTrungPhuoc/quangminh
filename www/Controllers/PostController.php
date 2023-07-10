@@ -6,7 +6,7 @@ use App\Forms\FormPost;
 use App\Models\Post;
 use App\Core\Verificator;
 
-class Post_Controller {
+class PostController {
     private $folder;
 
     public function __construct(){
@@ -27,6 +27,10 @@ class Post_Controller {
 
     function insert()
     {
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Post();
         $form = new FormPost();
         $view = new View($this->folder."/form", "back");
@@ -40,12 +44,21 @@ class Post_Controller {
             $parents = $_POST["parents"];
             $description = $_POST["description"];
             $content = $_POST["content"];
+            // Seo tags
+            $canonical = $_POST["canonical"];
+            $metatitle = $_POST["metatitle"];
+            $metadescription = $_POST["metadescription"];
             
             $model->setTitle($title);
             $model->setSlug($slug);
             $model->setParents($parents);
             $model->setDescription($description);
             $model->setContent($content);
+            // Seo tags
+            $model->setCanonical($canonical);
+            $model->setMetaTitle($metatitle);
+            $model->setMetaDescription($metadescription);
+
             $model->setUserId($_SESSION["user"]['id']);
 
             $model->save();
@@ -55,6 +68,10 @@ class Post_Controller {
     }
 
     function update(){
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
         $form = new FormPost();
         $model = new Post();
@@ -70,12 +87,22 @@ class Post_Controller {
             $parents = $_POST["parents"];
             $description = $_POST["description"];
             $content = $_POST["content"];
+            // Seo tags
+            $canonical = $_POST["canonical"];
+            $metatitle = $_POST["metatitle"];
+            $metadescription = $_POST["metadescription"];
+
             $model->setTitle($title);
             $model->setSlug($slug);
             $model->setParents($parents);
             $model->setDescription($description);
             $model->setContent($content);
             $model->setUserId($_SESSION["user"]['id']);
+            // Seo tags
+            $model->setCanonical($canonical);
+            $model->setMetaTitle($metatitle);
+            $model->setMetaDescription($metadescription);
+            
             $model->setId($_GET['id']);
             $model->save();
             header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/update?id='.$model->getId());
@@ -84,6 +111,10 @@ class Post_Controller {
     }
 
     function delete(){
+        if(trim($_SESSION["user"]['role']) != 'admin'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Post();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
@@ -92,6 +123,10 @@ class Post_Controller {
     }
 
     function status(){
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Post();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';

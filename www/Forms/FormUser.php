@@ -65,22 +65,51 @@ class FormUser extends AForm {
                     "error"=>"Votre mot de passe est incorrect"
                 ]
             );
-    
-            $group['pwdConfirm'] = $this->getElements(
-                [
-                    "id" => "pwdConfirm",
-                    "title" => "PwdConfirm"
-                ],
-                [
-                    "type"=>"password",
-                    "placeholder"=>"Confirmation",
-                    "confirm"=>"pwd",
-                    "required" => "required",
-                    "value"=> '',
-                    "error"=>"Mot de passe de confirmation incorrect"
-                ]
-            );
         }
+
+        $roles = [
+            [
+                'value' => 'admin',
+                'title' => 'Admin', // full role
+                'selected' => ''
+            ],
+            [
+                'value' => 'user',
+                'title' => 'User', // add and edit role
+                'selected' => 'selected'
+            ],
+            [
+                'value' => 'guest',
+                'title' => 'Guest', // view role
+                'selected' => ''
+            ]
+        ];
+
+        $option = [];
+        foreach ($roles as $key => $value) {
+            $selected = '';
+            if($row){
+                if(trim($value['value']) == trim($row[0]['role'])){
+                    $selected = 'selected';
+                }
+            }
+            $option[$key]['value'] = $value['value'];
+            $option[$key]['title'] = $value['title'];
+            $option[$key]['selected'] = ($row) ? $selected : $value['selected'];
+        }
+
+        $group['role'] = $this->getElements(
+            [
+                "id" => "role",
+                "title" => "Role",
+                "col"=>4,
+            ],
+            [
+                "type" => "select",
+                "options" => $option,
+                "error" => "Parents incorrect"
+            ]
+        );
 
         // $option = [
         //     [

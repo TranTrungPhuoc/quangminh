@@ -12,6 +12,10 @@ class Post extends Sql {
     protected Int $parents = 0;
     protected String $status;
     protected Int $userid = 0;
+    // Seo tags
+    protected String $canonical;
+    protected String $metatitle;
+    protected String $metadescription;
 
     /**
      * @return int
@@ -139,5 +143,53 @@ class Post extends Sql {
     public function setUserId(int $userid): void
     {
         $this->userid = $userid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCanonical(): string
+    {
+        return $this->canonical;
+    }
+
+    /**EVENT_MAIN
+     * @param int $canonical
+     */
+    public function setCanonical(string $canonical): void
+    {
+        $this->canonical = $canonical;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaTitle(): string
+    {
+        return $this->metatitle;
+    }
+
+    /**EVENT_MAIN
+     * @param int $metatitle
+     */
+    public function setMetaTitle(string $metatitle): void
+    {
+        $this->metatitle = $metatitle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMetaDescription(): string
+    {
+        return $this->metadescription;
+    }
+
+    /**EVENT_MAIN
+     * @param int $metadescription
+     */
+    public function setMetaDescription(string $metadescription): void
+    {
+        $this->metadescription = $metadescription;
     }
 }

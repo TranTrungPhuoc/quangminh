@@ -6,7 +6,7 @@ use App\Forms\AddUser;
 use App\Models\User;
 use App\Core\Verificator;
 
-class Security_Controller{
+class SecurityController{
     
     function login() {
         $view = new View("User/login", "login");
@@ -30,7 +30,8 @@ class Security_Controller{
                 'id' => $check_email[0]['id'],
                 'firstname' => $check_email[0]['firstname'],
                 'lastname' => $check_email[0]['lastname'],
-                'email' => $check_email[0]['email']
+                'email' => $check_email[0]['email'],
+                'role' => $check_email[0]['role']
             ];
             echo 'Logged in successfully';
             return true;

@@ -19,6 +19,7 @@
                                 <th>Firstname</th>
                                 <th>Lastname</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Date Inserted</th>
                                 <th>Active</th>
                                 <th>Function</th>
@@ -33,6 +34,7 @@
                                 <td><?php echo $value['firstname']; ?></td>
                                 <td><?php echo $value['lastname']; ?></td>
                                 <td><?php echo $value['email']; ?></td>
+                                <td><?php echo $value['role']; ?></td>
                                 <td><?php $date = explode(' ', $value['date_inserted']); echo $date[0]; ?></td>
                                 <td><input type="checkbox" class="status_<?php echo $value['id']; ?>" onclick="script_status('<?php echo $value['id']; ?>')" <?php echo $checked; ?>></td>
                                 <td>

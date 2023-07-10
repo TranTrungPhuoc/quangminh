@@ -6,7 +6,7 @@ use App\Forms\FormCategory;
 use App\Models\Category;
 use App\Core\Verificator;
 
-class Category_Controller {
+class CategoryController {
     private $folder;
 
     public function __construct(){
@@ -27,6 +27,10 @@ class Category_Controller {
 
     function insert()
     {
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $form = new FormCategory();
         $view = new View($this->folder."/form", "back");
         $view->assign('form', $form->getConfig());
@@ -35,11 +39,13 @@ class Category_Controller {
         {
             $title = $_POST["title"];
             $slug = $_POST["slug"];
-            $parents = $_POST["parents"];
             $model = new Category();
             $model->setTitle($title);
             $model->setSlug($slug);
-            $model->setParents($parents);
+            $lasttable = $model->getList('', 'sort', 'DESC', 1);
+            $sort = (count($lasttable)==0) ? 1 : $lasttable[0]['sort'] + 1;
+            $model->setSort($sort);
+            $model->setUserId($_SESSION["user"]['id']);
             $model->save();
             header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/index');
             exit();
@@ -47,6 +53,10 @@ class Category_Controller {
     }
 
     function update(){
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
         $form = new FormCategory();
         $model = new Category();
@@ -58,10 +68,8 @@ class Category_Controller {
         {
             $title = $_POST["title"];
             $slug = $_POST["slug"];
-            $parents = $_POST["parents"];
             $model->setTitle($title);
             $model->setSlug($slug);
-            $model->setParents($parents);
             $model->setId($_GET['id']);
             $model->save();
             header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/update?id='.$model->getId());
@@ -70,6 +78,10 @@ class Category_Controller {
     }
 
     function delete(){
+        if(trim($_SESSION["user"]['role']) != 'admin'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Category();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
@@ -78,6 +90,10 @@ class Category_Controller {
     }
 
     function status(){
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Category();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
@@ -87,6 +103,10 @@ class Category_Controller {
     }
 
     function sort(){
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Category();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';

@@ -73,17 +73,17 @@ class FormCategory extends AForm {
             $option = $new_option;
         }
 
-        $group['parents'] = $this->getElements(
-            [
-                "id" => "parents",
-                "title" => "parents"
-            ],
-            [
-                "type" => "select",
-                "options" => $option,
-                "error" => "Parents incorrect"
-            ]
-        );
+        // $group['parents'] = $this->getElements(
+        //     [
+        //         "id" => "parents",
+        //         "title" => "parents"
+        //     ],
+        //     [
+        //         "type" => "select",
+        //         "options" => $option,
+        //         "error" => "Parents incorrect"
+        //     ]
+        // );
 
         return [
             "config"=>[

@@ -6,7 +6,7 @@ use App\Forms\FormMenu;
 use App\Models\Menu;
 use App\Core\Verificator;
 
-class Menu_Controller {
+class MenuController {
     private $folder;
 
     public function __construct(){
@@ -27,6 +27,10 @@ class Menu_Controller {
 
     function insert()
     {
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $form = new FormMenu();
         $view = new View($this->folder."/form", "back");
         $view->assign('form', $form->getConfig());
@@ -39,6 +43,10 @@ class Menu_Controller {
             $model = new Menu();
             $model->setTitle($title);
             $model->setLink($link);
+            $lasttable = $model->getList('', 'sort', 'DESC', 1);
+            $sort = (count($lasttable)==0) ? 1 : $lasttable[0]['sort'] + 1;
+            $model->setSort($sort);
+            $model->setUserId($_SESSION["user"]['id']);
             $model->save();
 
             header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/index');
@@ -47,6 +55,10 @@ class Menu_Controller {
     }
 
     function update(){
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
         $form = new FormMenu();
         $model = new Menu();
@@ -70,6 +82,10 @@ class Menu_Controller {
     }
 
     function delete(){
+        if(trim($_SESSION["user"]['role']) != 'admin'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Menu();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
@@ -78,6 +94,10 @@ class Menu_Controller {
     }
 
     function status(){
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Menu();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
@@ -87,6 +107,10 @@ class Menu_Controller {
     }
 
     function sort(){
+        if(trim($_SESSION["user"]['role']) == 'guest'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Menu();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';

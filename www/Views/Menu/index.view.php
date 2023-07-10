@@ -1,3 +1,7 @@
+<?php
+use App\Models\Menu;
+$model = new Menu();
+?>
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -18,6 +22,7 @@
                                 <th>sort</th>
                                 <th>title</th>
                                 <th>link</th>
+                                <th>user</th>
                                 <th>Date Inserted</th>
                                 <th>Active</th>
                                 <th>Function</th>
@@ -26,6 +31,7 @@
                         <tbody>
                             <?php $total=count($table); foreach ($table as $key => $value) { 
                                 $checked = ($value['status']==1) ? 'checked' : '';
+                                $user = $model->getDetail('esgi_User', $value['userid']);
                             ?>
                             <tr id="tr_<?php echo $value['id']; ?>">
                                 <td>
@@ -38,6 +44,7 @@
                                 </td>
                                 <td><?php echo $value['title']; ?></td>
                                 <td><?php echo $value['link']; ?></td>
+                                <td><?php echo ($user) ? '<span class="badge bg-success">'.$user[0]['firstname'].' '.$user[0]['lastname'].'</span>':''; ?></td>
                                 <td><?php $date = explode(' ', $value['date_inserted']); echo $date[0]; ?></td>
                                 <td><input type="checkbox" class="status_<?php echo $value['id']; ?>" onclick="script_status('<?php echo $value['id']; ?>')" <?php echo $checked; ?>></td>
                                 <td>

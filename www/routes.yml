@@ -1,111 +1,107 @@
 /:
-  controller: Layout
-  action: index
-
-/*:
-  controller: Layout
+  controller: LayoutController
   action: index
 
 /admin/dashboard/index:
-  controller: Dashboard
+  controller: DashboardController
   action: index
 
 /admin/user/index:
-  controller: User_Controller
+  controller: UserController
   action: index
 
 /admin/user/insert:
-  controller: User_Controller
+  controller: UserController
   action: insert
 
 /admin/user/update:
-  controller: User_Controller
+  controller: UserController
   action: update
 
 /admin/user/delete:
-  controller: User_Controller
+  controller: UserController
   action: delete
 
 /admin/user/status:
-  controller: User_Controller
+  controller: UserController
   action: status
 
 /admin/category/index:
-  controller: Category_Controller
+  controller: CategoryController
   action: index
 
 /admin/category/insert:
-  controller: Category_Controller
+  controller: CategoryController
   action: insert
 
 /admin/category/update:
-  controller: Category_Controller
+  controller: CategoryController
   action: update
 
 /admin/category/delete:
-  controller: Category_Controller
+  controller: CategoryController
   action: delete
 
 /admin/category/status:
-  controller: Category_Controller
+  controller: CategoryController
   action: status
 
 /admin/category/sort:
-  controller: Category_Controller
+  controller: CategoryController
   action: sort
 
 /admin/post/index:
-  controller: Post_Controller
+  controller: PostController
   action: index
 
 /admin/post/insert:
-  controller: Post_Controller
+  controller: PostController
   action: insert
 
 /admin/post/update:
-  controller: Post_Controller
+  controller: PostController
   action: update
 
 /admin/post/delete:
-  controller: Post_Controller
+  controller: PostController
   action: delete
 
 /admin/post/status:
-  controller: Post_Controller
+  controller: PostController
   action: status
 
 /admin/menu/index:
-  controller: Menu_Controller
+  controller: MenuController
   action: index
 
 /admin/menu/insert:
-  controller: Menu_Controller
+  controller: MenuController
   action: insert
 
 /admin/menu/update:
-  controller: Menu_Controller
+  controller: MenuController
   action: update
 
 /admin/menu/delete:
-  controller: Menu_Controller
+  controller: MenuController
   action: delete
 
 /admin/menu/status:
-  controller: Menu_Controller
+  controller: MenuController
   action: status
 
 /admin/menu/sort:
-  controller: Menu_Controller
+  controller: MenuController
   action: sort
 
 /login:
-  controller: Security_Controller
+  controller: SecurityController
   action: login
 
 /processlogin:
-  controller: Security_Controller
+  controller: SecurityController
   action: processlogin
 
 /logout:
-  controller: Security_Controller
+  controller: SecurityController
   action: logout

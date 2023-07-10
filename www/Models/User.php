@@ -10,6 +10,7 @@ class User extends Sql {
     protected String $email;
     protected String $password;
     protected String $status='FALSE';
+    protected String $role;
 
     /**
      * @return int
@@ -92,7 +93,7 @@ class User extends Sql {
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getStatus(): string
     {
@@ -105,5 +106,21 @@ class User extends Sql {
     public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**EVENT_MAIN
+     * @param int $role
+     */
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 }

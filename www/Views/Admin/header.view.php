@@ -1,3 +1,4 @@
+<!-- <?php //session_start(); ?> -->
 <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
     <div class="m-header">
         <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
@@ -28,7 +29,7 @@
                     <div class="dropdown-menu dropdown-menu-end profile-notification">
                         <div class="pro-head">
                             <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                            <span>John Doe</span>
+                            <span><?php echo $_SESSION["user"]['email']; ?> (<?php echo $_SESSION["user"]['role']; ?>)</span>
                             <a href="auth-signin.html" class="dud-logout" title="Logout">
                                 <i class="feather icon-log-out"></i>
                             </a>

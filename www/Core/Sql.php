@@ -18,10 +18,10 @@ abstract class Sql{
         $this->table = "esgi_".$this->table;
     }
 
-    public function getList($table='', $sort='sort', $value_sort='ASC'): array
+    public function getList($table='', $sort='sort', $value_sort='ASC', $limit=100): array
     {
         $newTable = ($table != '') ? $table : $this->table;
-        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" ORDER BY '.$sort.' '.$value_sort);
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" ORDER BY '.$sort.' '.$value_sort. ' LIMIT '.$limit);
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;

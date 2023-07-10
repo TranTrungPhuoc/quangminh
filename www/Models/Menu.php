@@ -9,6 +9,7 @@ class Menu extends Sql {
     protected String $link;
     protected String $status;
     protected String $sort;
+    protected Int $userid = 0;
 
     /**
      * @return int
@@ -88,5 +89,21 @@ class Menu extends Sql {
     public function setSort(string $sort): void
     {
         $this->sort = $sort;
+    }
+
+    /**
+     * @return Int
+     */
+    public function getUserId(): int
+    {
+        return $this->userid;
+    }
+
+    /**
+     * @param Int $userId
+     */
+    public function setUserId(int $userid): void
+    {
+        $this->userid = $userid;
     }
 }
