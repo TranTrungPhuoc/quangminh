@@ -38,6 +38,15 @@ class SecurityController{
         }
     }
 
+    function active(){
+        $idUser = $_GET['id'];
+        $model = new User();
+        $model->setId($idUser);
+        $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
+        $model->setStatus('true');
+        $model->status();
+    }
+
     function logout() {
         session_destroy();
         header('Location: '.(empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]".'/login');

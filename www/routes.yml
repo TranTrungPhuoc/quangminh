@@ -105,3 +105,7 @@
 /logout:
   controller: SecurityController
   action: logout
+
+/admin/user/active:
+  controller: SecurityController
+  action: active

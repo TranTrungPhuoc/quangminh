@@ -2,7 +2,6 @@
 namespace App;
 //Contrainte : utilisation des Namespace
 
-
 spl_autoload_register(function ($class) {
     //Core/View.php
     $class = str_replace("App\\","", $class);
@@ -11,8 +10,6 @@ spl_autoload_register(function ($class) {
         include $class;
     }
 });
-
-
 
 //Récupérer dans l'url l'uri /login ou /user/toto
 //Nettoyer la donnée
@@ -44,9 +41,9 @@ if(!file_exists("routes.yml")) {
 
 $routes = yaml_parse_file("routes.yml");
 
-//Page 404
 if(empty($routes[$uri])) {
-    die("Page 404");
+    $routes[$uri]["controller"] = 'LayoutController';
+    $routes[$uri]["action"] = 'index';
 }
 
 if(empty($routes[$uri]["controller"]) || empty($routes[$uri]["action"])) {
