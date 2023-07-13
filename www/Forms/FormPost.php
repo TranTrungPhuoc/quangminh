@@ -108,7 +108,7 @@ class FormPost extends AForm {
                 "max"=>120,
                 "col"=>4,
                 "value"=> ($row)?trim($row[0]['canonical']):'',
-                "required" => "required",
+                "required" => "",
                 "event" => "",
                 "error"=>"Votre nom doit faire entre 2 et 120 caractères"
             ]
@@ -123,7 +123,7 @@ class FormPost extends AForm {
                 "max"=>120,
                 "col"=>4,
                 "value"=> ($row)?trim($row[0]['metatitle']):'',
-                "required" => "required",
+                "required" => "",
                 "event" => "",
                 "error"=>"Votre nom doit faire entre 2 et 120 caractères"
             ]
@@ -138,7 +138,7 @@ class FormPost extends AForm {
                 "max"=>120,
                 "col"=>4,
                 "value"=> ($row)?trim($row[0]['metadescription']):'',
-                "required" => "required",
+                "required" => "",
                 "event" => "",
                 "error"=>"Votre nom doit faire entre 2 et 120 caractères"
             ]

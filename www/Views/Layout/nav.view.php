@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="/">Quang Minh</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -12,7 +12,7 @@
                     $str='';
                     foreach ($menu as $key => $value) {
                         $str .= '<li class="nav-item">';
-                        $str .= '<a class="nav-link px-lg-3 py-3 py-lg-4" href="'.$value['link'].'">';
+                        $str .= '<a class="nav-link px-lg-3 py-3 py-lg-4" href="'.strtolower($value['link']).'">';
                         $str .= $value['title'];
                         $str .= '</a></li>';
                     }

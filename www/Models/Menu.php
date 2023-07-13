@@ -56,7 +56,7 @@ class Menu extends Sql {
      */
     public function setLink(string $link): void
     {
-        $this->link = strtoupper(trim($link));
+        $this->link = trim($link);
     }
 
     /**

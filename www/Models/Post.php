@@ -94,7 +94,7 @@ class Post extends Sql {
      */
     public function setSlug(string $slug): void
     {
-        $this->slug = ucwords(strtolower(trim($slug)));
+        $this->slug = trim($slug);
     }
 
     /**

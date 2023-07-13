@@ -2,6 +2,10 @@
   controller: LayoutController
   action: index
 
+/api/memu/index:
+  controller: DashboardController
+  action: index
+
 /admin/dashboard/index:
   controller: DashboardController
   action: index

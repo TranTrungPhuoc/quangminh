@@ -37,6 +37,15 @@ abstract class Sql{
         return $result;
     }
 
+    public function getDetailSlug($table='', $slug=''): array
+    {
+        $newTable = ($table != '') ? $table : $this->table;
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" WHERE slug='."'".$slug."'");
+        $queryPrepared->execute();
+        $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function checkEmail(): array
     {
         $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'" WHERE status=TRUE AND email=\'' . $this->getEmail() . '\'');

@@ -57,7 +57,7 @@ class Category extends Sql {
      */
     public function setSlug(string $slug): void
     {
-        $this->slug = strtoupper(trim($slug));
+        $this->slug = trim($slug);
     }
 
     /**
