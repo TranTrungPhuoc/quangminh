@@ -30,6 +30,10 @@
   controller: UserController
   action: status
 
+/admin/user/changepassword:
+  controller: UserController
+  action: changepassword
+
 /admin/category/index:
   controller: CategoryController
   action: index
@@ -97,6 +101,26 @@
 /admin/menu/sort:
   controller: MenuController
   action: sort
+
+/admin/comment/index:
+  controller: CommentController
+  action: index
+
+/admin/comment/insert:
+  controller: CommentController
+  action: insert
+
+/admin/comment/update:
+  controller: CommentController
+  action: update
+
+/admin/comment/delete:
+  controller: CommentController
+  action: delete
+
+/admin/comment/status:
+  controller: CommentController
+  action: status
 
 /login:
   controller: SecurityController

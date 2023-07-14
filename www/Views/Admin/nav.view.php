@@ -36,10 +36,12 @@
                     array("title"=>"Post", "icon"=>"globe", "link"=>"post"),
                     array("title"=>"Menu", "icon"=>"navigation", "link"=>"menu"),
                     // array("title"=>"Configs", "icon"=>"settings", "link"=>"configs"),
-                    array("title"=>"User", "icon"=>"users", "link"=>"user")
                 ];
+                if(trim($_SESSION["user"]['role'], ' ') == 'admin'){
+                    array_push($nav, array("title"=>"Comment", "icon"=>"mail", "link"=>"comment"));
+                    array_push($nav, array("title"=>"User", "icon"=>"users", "link"=>"user"));
+                }
             ?>
-
             <ul class="nav pcoded-inner-navbar ">
                 <li class="nav-item pcoded-menu-caption"></li>
                 <?php

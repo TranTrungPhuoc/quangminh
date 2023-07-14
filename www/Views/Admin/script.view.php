@@ -55,6 +55,35 @@
 </script>
 
 <script>
+    function script_changePassword() {
+        const ch_password = $('#ch_password').val();
+        const ch_confirm = $('#ch_confirm').val();
+
+        if(ch_password == ''){
+            alert('Please enter Password!')
+            return false;
+        }
+        
+        if(ch_confirm == ''){
+            alert('Please enter Confirm Password!')
+            return false;
+        }
+        
+        if(ch_password != ch_confirm){
+            alert('Password and Confirm Password must be the same!')
+            return false;
+        }
+
+        $.ajax({
+            url: '/admin/user/changepassword',
+            type: 'POST',
+            data: {password: ch_password}, // key : value {password}
+            success: function name(results) {
+                alert(results)
+                window.location.href = "/login";
+            }
+        })
+    }
     function getName(id, name) {
         $('#returnName').text(name);
         $('#getId').val(id);

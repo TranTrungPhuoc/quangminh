@@ -1,9 +1,75 @@
+<div id="popup_reply" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLiveLabel">Reply!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Content</label>
+                            <textarea name="content_reply" id="content_reply" class="form-control" cols="30" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="script_reply()">
+                Reply
+            </button>
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popup_changePassword" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLiveLabel">Change Password!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="ch_password" name="validation-password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Confirm password</label>
+                            <input type="password" class="form-control" id="ch_confirm" name="validation-password-confirmation" placeholder="Confirm password">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="script_changePassword()">
+                Accept
+            </button>
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="popup_delete" class="modal fade" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLiveLabel">Thông báo</h5>
+                <h5 class="modal-title" id="exampleModalLiveLabel">Alert!</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
@@ -12,9 +78,9 @@
                 <input type="hidden" id="getId" />
             </div>
             <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="script_delete()">Delete</button>
                 <button type="button" class="btn btn-secondary"
                     data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="script_delete()">Delete</button>
             </div>
         </div>
     </div>

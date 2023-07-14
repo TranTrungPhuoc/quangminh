@@ -121,6 +121,17 @@ class UserController {
         echo $result;
     }
 
+    function changepassword():void{
+        $password = $_POST['password'];
+        $model = new User();
+        $model->setPassword($password);
+        $model->setId($_SESSION["user"]['id']);
+        $model->setStatus('true');
+        $model->save();
+        session_destroy();
+        echo 'Change Password Successfully!';
+    }
+
     function send_email($idUser='', $email='')
     {
         include 'Exception.php';

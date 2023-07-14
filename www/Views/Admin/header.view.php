@@ -2,7 +2,7 @@
 <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
     <div class="m-header">
         <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-        <a href="/" target="_blanlk" class="b-brand">
+        <a href="/" class="b-brand" target="_blank">
             <img src="assets/images/logo.png" alt="" class="logo">
         </a>
         <a href="#!" class="mob-toggler">
