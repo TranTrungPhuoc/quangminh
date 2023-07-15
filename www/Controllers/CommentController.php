@@ -14,7 +14,7 @@ class CommentController {
 
     function index(){
         $model = new Comment();
-        $table = $model->getList();
+        $table = $model->getList('', 'id');
         $view = new View($this->folder."/index", "back");
         $view->assign("table", $table);
     }
@@ -23,32 +23,22 @@ class CommentController {
     {
         $title = $_POST["title"];
         $content = $_POST["content"];
+        $postid = $_POST["postid"];
         $model = new Comment();
         $model->setTitle($title);
         $model->setContent($content);
+        $model->setPostId($postid);
         $model->save();
-        echo 'Insert Successfully!!';
+        echo 'Send Successfully!!';
     }
 
     function update(){
-        $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
-        $form = new FormComment();
         $model = new Comment();
-        $model->setId($_GET['id']);
-        $row = $model->getDetail();
-        $view = new View($this->folder."/form", "back");
-        $view->assign('form', $form->getConfig($row));
-        if($form->isSubmit())
-        {
-            $title = $_POST["title"];
-            $content = $_POST["content"];
-            $model->setTitle($title);
-            $model->setContent($content);
-            $model->setId($_GET['id']);
-            $model->save();
-            header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/update?id='.$model->getId());
-            exit();
-        }
+        $model->setId($_POST['id']);
+        $model->setReply($_POST['reply']);
+        $model->setUserId($_SESSION["user"]['id']);
+        $model->save();
+        echo 'Reply Successfully!!';
     }
 
     function delete(){

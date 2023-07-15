@@ -11,8 +11,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="form-label">Content</label>
-                            <textarea name="content_reply" id="content_reply" class="form-control" cols="30" rows="5"></textarea>
+                            <label class="form-label text-danger">Title</label>
+                            <input type="text" class="form-control" id="title_reply">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-danger">Content</label>
+                            <textarea id="content_reply" class="form-control" cols="30" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label text-danger">Reply</label>
+                            <input type="hidden" id="id_reply">
+                            <textarea id="reply" class="form-control" cols="30" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
@@ -86,7 +95,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="modal-content">
@@ -119,7 +128,7 @@
                         <div class="carousel-item" data-interval="50000">
                             <img src="assets/images/model/able-admin.jpg" class="img-fluid mt-0" alt="images">
                         </div>
-                        <!-- <div class="carousel-item" data-interval="50000">
+                        <div class="carousel-item" data-interval="50000">
                             <img src="assets/images/model/welcome.svg" class="wid-250 my-4" alt="images">
                             <div class="row justify-content-center">
                                 <div class="col-md-8">
@@ -127,7 +136,7 @@
                                     <p class="f-16"> it include  <strong>Gulp / npm support, UI kit, Live customizer improved version, New improved layouts with RTL support, 8+ New Admin Panels</strong></p>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
 
                 </div>
@@ -143,7 +152,7 @@
                     <ol class="carousel-indicators">
                         <li data-bs-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-bs-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <!-- <li data-bs-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+                        <li data-bs-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -157,4 +166,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

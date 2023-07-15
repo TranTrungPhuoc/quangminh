@@ -55,6 +55,30 @@
 </script>
 
 <script>
+    function getReply(id,title,content,reply) {
+        $('#id_reply').val(id)
+        $('#title_reply').val(title)
+        $('#content_reply').val(content)
+        $('#reply').val(reply)
+    }
+    function script_reply() {
+        const id = $('#id_reply').val()
+        const reply = $('#reply').val()
+        if(reply.trim() === ''){
+            alert('Please enter Content')
+            return false;
+        }
+        $.ajax({
+            url: '/admin/<?php echo explode('/',$_SERVER['REQUEST_URI'])[2]; ?>/update',
+            type: 'POST',
+            data: { id, reply },
+            success: function (results) {
+                alert(results);
+            }
+        })
+        return false;
+
+    }
     function script_changePassword() {
         const ch_password = $('#ch_password').val();
         const ch_confirm = $('#ch_confirm').val();
@@ -173,6 +197,7 @@
         str = str.replace(/^-+/g, '');
 
         // xóa phần dư - ở cuối
+        str = str.replace(/-+/g, '-');
         str = str.replace(/-+$/g, '');
 
         document.getElementById(slug).value = str;

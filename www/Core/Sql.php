@@ -27,11 +27,11 @@ abstract class Sql{
         return $result;
     }
 
-    public function getDetail($table='', $id=''): array
+    public function getDetail($table='', $id='', $key='id', $status=''): array
     {
         $newTable = ($table != '') ? $table : $this->table;
         $newId = ($id != '') ? $id : $this->getId();
-        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" WHERE id='.$newId);
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" WHERE '.$status.$key.'='.$newId);
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;

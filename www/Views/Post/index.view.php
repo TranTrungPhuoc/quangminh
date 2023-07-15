@@ -31,7 +31,7 @@ $model = new Post();
                             <?php 
                                 foreach ($table as $key => $value) { 
                                 $checked = ($value['status']==1) ? 'checked' : '';
-                                $category = $model->getDetail('esgi_Category', $value['parents']);
+                                $category = $model->getDetail('esgi_Category', $value['categoryid']);
                                 $user = $model->getDetail('esgi_User', $value['userid']);
                             ?>
                             <tr id="tr_<?php echo $value['id']; ?>">

@@ -17,10 +17,11 @@
                 e.preventDefault();
                 const fullname = $('#fullname').val()
                 const content = $('#content').val()
+                const postid = $('#postid').val()
                 $.ajax({
                     url: '/admin/comment/insert',
                     type: 'POST',
-                    data: {title: fullname, content},
+                    data: {title: fullname, content, postid},
                     success: function name(results) {
                         alert(results);
                         $('#fullname').val('')

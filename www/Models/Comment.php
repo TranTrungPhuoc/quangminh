@@ -7,8 +7,10 @@ class Comment extends Sql {
     protected Int $id = 0;
     protected String $title;
     protected String $content;
+    protected String $reply;
     protected String $status;
-    protected Int $userid = 0;
+    protected Int $userid;
+    protected Int $postid;
 
     /**
      * @return int
@@ -51,11 +53,27 @@ class Comment extends Sql {
     }
 
     /**
-     * @param String $slug
+     * @param String $content
      */
     public function setContent(string $content): void
     {
         $this->content = trim($content);
+    }
+
+    /**
+     * @return String
+     */
+    public function getReply(): string
+    {
+        return $this->reply;
+    }
+
+    /**
+     * @param String $reply
+     */
+    public function setReply(string $reply): void
+    {
+        $this->reply = trim($reply);
     }
 
     /**
@@ -88,5 +106,21 @@ class Comment extends Sql {
     public function setUserId(int $userid): void
     {
         $this->userid = $userid;
+    }
+
+    /**
+     * @return Int
+     */
+    public function getPostId(): int
+    {
+        return $this->postid;
+    }
+
+    /**
+     * @param Int $postid
+     */
+    public function setPostId(int $postid): void
+    {
+        $this->postid = $postid;
     }
 }

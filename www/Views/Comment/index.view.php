@@ -11,7 +11,6 @@ $model = new Comment();
                     <table id="simpletable" class="table table-striped table-bordered nowrap text-center">
                         <thead>
                             <tr>
-                                <th>sort</th>
                                 <th>title</th>
                                 <th>user</th>
                                 <th>Date Inserted</th>
@@ -23,24 +22,21 @@ $model = new Comment();
                             <?php $total=count($table); foreach ($table as $key => $value) { 
                                 $checked = ($value['status']==1) ? 'checked' : '';
                                 $user = $model->getDetail('esgi_User', $value['userid']);
+                                $post = $model->getDetail('esgi_Post', $value['postid']);
                             ?>
                             <tr id="tr_<?php echo $value['id']; ?>">
-                                <td>
-                                    <select class="form-select" id="sort_<?php echo $value['id']; ?>" onchange="updateSort('<?php echo $value['id']; ?>')">
-                                        <?php for ($i=1; $i <= $total; $i++) { 
-                                            $selected = ($i == $value['sort']) ? 'selected' : '';
-                                            echo '<option value="'.$i.'" '.$selected.'>'.$i.'</option>';
-                                        } ?>
-                                    </select>    
-                                </td>
                                 <td><?php echo $value['title']; ?></td>
                                 <td><?php echo ($user) ? '<span class="badge bg-success">'.$user[0]['firstname'].' '.$user[0]['lastname'].'</span>':''; ?></td>
                                 <td><?php $date = explode(' ', $value['date_inserted']); echo $date[0]; ?></td>
                                 <td><input type="checkbox" class="status_<?php echo $value['id']; ?>" onclick="script_status('<?php echo $value['id']; ?>')" <?php echo $checked; ?>></td>
                                 <td>
+                                    <a href="<?php echo '/'.trim($post[0]['slug'],' ').'.html'; ?>" target="_blank" class="btn btn-sm btn-outline-primary has-ripple">
+                                        <i class="feather icon-eye"></i>
+                                        View
+                                    </a>
                                     <button type="button" class="btn btn-sm btn-outline-info has-ripple" 
-                                        data-bs-toggle="modal" data-bs-target="#popup_reply" onclick="getName('<?php echo $value['id']; ?>','<?php echo $value['title']; ?>')">
-                                        <i class="feather icon-trash"></i>
+                                        data-bs-toggle="modal" data-bs-target="#popup_reply" onclick="getReply('<?php echo $value['id']; ?>','<?php echo trim($value['title'],' '); ?>','<?php echo trim($value['content'],' '); ?>','<?php echo trim($value['reply'],' '); ?>')">
+                                        <i class="feather icon-edit"></i>
                                         Reply
                                     </button>
                                     <button type="button" class="btn btn-sm btn-outline-danger has-ripple" 

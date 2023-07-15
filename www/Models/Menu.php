@@ -9,7 +9,7 @@ class Menu extends Sql {
     protected String $link;
     protected String $status;
     protected String $sort;
-    protected Int $userid = 0;
+    protected Int $userid;
 
     /**
      * @return int

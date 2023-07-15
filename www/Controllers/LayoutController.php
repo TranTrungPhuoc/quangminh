@@ -2,16 +2,16 @@
 namespace App\Controllers;
 session_start();
 use App\Core\View;
-use App\Models\LayoutModel;
+use App\Models\Layout;
 class LayoutController{
     public function index(){
         $trim_params = trim($_SERVER['REQUEST_URI'],"/");
         $explode_string = explode(".", $trim_params);
 
-        $model = new LayoutModel();
+        $model = new Layout();
         $menu = $model->getList('esgi_Menu');
         $post = $model->getList('esgi_Post', 'id', 'DESC');
-        $conment = $model->getList('esgi_Comment', 'id', 'DESC');
+        $conment = [];
 
         $slug = $explode_string[0];
 
@@ -38,6 +38,8 @@ class LayoutController{
             $content = $detail[0]['content']??'';
             $meta_title = $detail[0]['metatitle'] . " | Quang Minh";
             $meta_description=$detail[0]['metadescription'] . " | Quang Minh";
+
+            $conment = $model->getDetail('esgi_Comment', $id, 'postid', 'status=TRUE AND ');
 
             $view = new View("Layout/post", "front");
         }

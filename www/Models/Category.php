@@ -7,10 +7,9 @@ class Category extends Sql {
     protected Int $id = 0;
     protected String $title;
     protected String $slug;
-    protected Int $parents = 0;
     protected String $status;
     protected String $sort;
-    protected Int $userid = 0;
+    protected Int $userid;
 
     /**
      * @return int
@@ -58,22 +57,6 @@ class Category extends Sql {
     public function setSlug(string $slug): void
     {
         $this->slug = trim($slug);
-    }
-
-    /**
-     * @return Int
-     */
-    public function getParents(): int
-    {
-        return $this->parents;
-    }
-
-    /**
-     * @param Int $parents
-     */
-    public function setParents(int $parents): void
-    {
-        $this->parents = $parents;
     }
 
     /**

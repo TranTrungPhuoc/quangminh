@@ -46,7 +46,7 @@ class FormPost extends AForm {
             foreach ($category as $key => $value) {
                 $selected = '';
                 if($row){
-                    if($value['id'] == $row[0]['parents']){
+                    if($value['id'] == $row[0]['categoryid']){
                         $selected = 'selected';
                     }
                 }
@@ -56,16 +56,16 @@ class FormPost extends AForm {
             }
         }
 
-        $group['parents'] = $this->getElements(
+        $group['categoryid'] = $this->getElements(
             [
-                "id" => "parents",
-                "title" => "parents",
+                "id" => "categoryid",
+                "title" => "categoryid",
                 "col"=>4,
             ],
             [
                 "type" => "select",
                 "options" => $option,
-                "error" => "Parents incorrect"
+                "error" => "categoryid incorrect"
             ]
         );
 

@@ -1,6 +1,7 @@
 <?php
 namespace App;
 //Contrainte : utilisation des Namespace
+include './Core/Define.php';
 
 spl_autoload_register(function ($class) {
     //Core/View.php

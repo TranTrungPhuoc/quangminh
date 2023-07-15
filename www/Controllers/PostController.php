@@ -41,7 +41,7 @@ class PostController {
         {
             $title = $_POST["title"];
             $slug = $_POST["slug"];
-            $parents = $_POST["parents"];
+            $categoryid = $_POST["categoryid"];
             $description = $_POST["description"];
             $content = $_POST["content"];
             // Seo tags
@@ -51,7 +51,7 @@ class PostController {
             
             $model->setTitle($title);
             $model->setSlug($slug);
-            $model->setParents($parents);
+            $model->setCategoryid($categoryid);
             $model->setDescription($description);
             $model->setContent($content);
             // Seo tags
@@ -84,7 +84,7 @@ class PostController {
         {
             $title = $_POST["title"];
             $slug = $_POST["slug"];
-            $parents = $_POST["parents"];
+            $categoryid = $_POST["categoryid"];
             $description = $_POST["description"];
             $content = $_POST["content"];
             // Seo tags
@@ -94,7 +94,7 @@ class PostController {
 
             $model->setTitle($title);
             $model->setSlug($slug);
-            $model->setParents($parents);
+            $model->setCategoryid($categoryid);
             $model->setDescription($description);
             $model->setContent($content);
             $model->setUserId($_SESSION["user"]['id']);

@@ -9,9 +9,9 @@ class Post extends Sql {
     protected String $slug;
     protected String $description;
     protected String $content;
-    protected Int $parents = 0;
+    protected Int $categoryid = 0;
     protected String $status;
-    protected Int $userid = 0;
+    protected Int $userid;
     // Seo tags
     protected String $canonical;
     protected String $metatitle;
@@ -100,17 +100,17 @@ class Post extends Sql {
     /**
      * @return Int
      */
-    public function getParents(): int
+    public function getCategoryid(): int
     {
-        return $this->parents;
+        return $this->categoryid;
     }
 
     /**
-     * @param Int $parents
+     * @param Int $categoryid
      */
-    public function setParents(int $parents): void
+    public function setCategoryid(int $categoryid): void
     {
-        $this->parents = $parents;
+        $this->categoryid = $categoryid;
     }
 
     /**

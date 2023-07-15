@@ -37,7 +37,6 @@ class UserController {
         $form = new FormUser();
         $view = new View($this->folder."/form", "back");
         $view->assign('form', $form->getConfig());
-        $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
         if($form->isSubmit())
         {
             $firstname = $_POST["firstname"];
@@ -60,7 +59,7 @@ class UserController {
 
             $this->send_email($idUser, $email);
 
-            header('Location: '.$actual_link.'/admin/'.strtolower($this->folder).'/index');
+            header('Location: '.URL.'/admin/'.strtolower($this->folder).'/index');
             exit();
         }
     }
@@ -134,9 +133,9 @@ class UserController {
 
     function send_email($idUser='', $email='')
     {
-        include 'Exception.php';
-        include 'PHPMailer.php';
-        include 'SMTP.php';
+        include 'mail/Exception.php';
+        include 'mail/PHPMailer.php';
+        include 'mail/SMTP.php';
 
         // Instantiation and passing `true` enables exceptions
         $mail = new PHPMailer(true);
@@ -164,7 +163,7 @@ class UserController {
             // Content
             $mail->isHTML(true);   // Set email format to HTML
             $mail->Subject = 'Here is the subject';
-            $mail->Body = 'Please click on this link <a href="http://localhost/admin/user/active?id='.$idUser.'" target="_blank">Active Account</a> to active account.';
+            $mail->Body = 'Please click on this link <a href="'.URL.'/admin/user/active?id='.$idUser.'" target="_blank">Active Account</a> to active account.';
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $mail->send();
             echo 'Message has been sent';
