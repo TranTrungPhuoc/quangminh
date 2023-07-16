@@ -37,6 +37,14 @@ abstract class Sql{
         return $result;
     }
 
+    public function getLast(): array
+    {
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$this->table.'" ORDER BY id DESC LIMIT 1');
+        $queryPrepared->execute();
+        $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getDetailSlug($table='', $slug=''): array
     {
         $newTable = ($table != '') ? $table : $this->table;
@@ -62,19 +70,21 @@ abstract class Sql{
         return $result;
     }
 
-    public function save(): void
+    public function save($keyupdate=''): void
     {
         $columns = get_object_vars($this);
-
+        
         $columnsToDeleted =get_class_vars(get_class());
         $columns = array_diff_key($columns, $columnsToDeleted);
         unset($columns["id"]);
+        
+        $idupdate = ($keyupdate == '') ? 'id': $keyupdate;
 
         if(is_numeric($this->getId()) && $this->getId()>0)
         {
             $columnsUpdate = [];
             foreach ($columns as $key=>$value) { $columnsUpdate[]= $key."=:".$key; }
-            $queryPrepared = $this->pdo->prepare('UPDATE "public"."'.$this->table.'" SET '.implode(",",$columnsUpdate).' WHERE id='.$this->getId());
+            $queryPrepared = $this->pdo->prepare('UPDATE "public"."'.$this->table.'" SET '.implode(",",$columnsUpdate).' WHERE '.$idupdate.'='.$this->getId());
         }else{
             $columnString = implode(',', array_keys($columns));
             $valueString = implode(',', array_fill(0, count($columns), '?'));
