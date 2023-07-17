@@ -4,6 +4,7 @@ session_start();
 use App\Core\View;
 use App\Forms\FormPost;
 use App\Models\Post;
+use App\Models\Token;
 use App\Core\Verificator;
 
 class PostController {

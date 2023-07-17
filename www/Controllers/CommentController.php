@@ -42,6 +42,10 @@ class CommentController {
     }
 
     function delete(){
+        if(trim($_SESSION["user"]['role']) != 'admin'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Comment();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
@@ -50,6 +54,10 @@ class CommentController {
     }
 
     function status(){
+        if(trim($_SESSION["user"]['role']) != 'admin'){
+            echo 'You are not enough role';
+            die;
+        }
         $model = new Comment();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';

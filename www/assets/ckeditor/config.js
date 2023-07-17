@@ -8,12 +8,12 @@ CKEDITOR.editorConfig = function( config ) {
 	// For complete reference see:
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 
-	config.filebrowserBrowseUrl = '../assets/ckeditor/ckfinder/ckfinder.html';
-    config.filebrowserImageBrowseUrl = '../assets/ckeditor/ckfinder/ckfinder.html?type=Images';
-    config.filebrowserFlashBrowseUrl = '../assets/ckeditor/ckfinder/ckfinder.html?type=Flash';
-    config.filebrowserUploadUrl = '../assets/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
-    config.filebrowserImageUploadUrl = '../assets/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
-    config.filebrowserFlashUploadUrl = '../assets/ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
+	config.filebrowserBrowseUrl = '../assets/ckfinder/ckfinder.html';
+    config.filebrowserImageBrowseUrl = '../assets/ckfinder/ckfinder.html?type=Images';
+    config.filebrowserFlashBrowseUrl = '../assets/ckfinder/ckfinder.html?type=Flash';
+    config.filebrowserUploadUrl = '../assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+    config.filebrowserImageUploadUrl = '../assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+    config.filebrowserFlashUploadUrl = '../assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [

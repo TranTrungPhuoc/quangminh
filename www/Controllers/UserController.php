@@ -4,6 +4,7 @@ session_start();
 use App\Core\View;
 use App\Forms\FormUser;
 use App\Models\User;
+use App\Models\Token;
 use App\Core\Verificator;
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -44,7 +45,7 @@ class UserController {
         $view->assign("table", $table);
     }
 
-    function insert(): void {
+    function insert() {
         if(trim($_SESSION["user"]['role']) == 'guest'){
             echo 'You are not enough role';
             die;

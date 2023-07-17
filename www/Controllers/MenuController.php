@@ -4,6 +4,7 @@ session_start();
 use App\Core\View;
 use App\Forms\FormMenu;
 use App\Models\Menu;
+use App\Models\Token;
 use App\Core\Verificator;
 
 class MenuController {
