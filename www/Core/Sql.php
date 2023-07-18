@@ -18,10 +18,10 @@ abstract class Sql{
         $this->table = "esgi_".$this->table;
     }
 
-    public function getList($table='', $sort='sort', $value_sort='ASC', $limit=100): array
+    public function getList($table='', $sort='sort', $value_sort='ASC', $limit=100, $status=''): array
     {
         $newTable = ($table != '') ? $table : $this->table;
-        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" ORDER BY '.$sort.' '.$value_sort. ' LIMIT '.$limit);
+        $queryPrepared = $this->pdo->prepare('SELECT * FROM "public"."'.$newTable.'" '.$status.' ORDER BY '.$sort.' '.$value_sort. ' LIMIT '.$limit);
         $queryPrepared->execute();
         $result = $queryPrepared->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
@@ -93,8 +93,8 @@ abstract class Sql{
         $queryPrepared->execute(array_values($columns));
     }
 
-    public function delete() {
-        $queryPrepared = $this->pdo->prepare('DELETE FROM "public"."'.$this->table.'" WHERE id='.$this->getId());
+    public function delete($key='id') {
+        $queryPrepared = $this->pdo->prepare('DELETE FROM "public"."'.$this->table.'" WHERE '.$key.'='.$this->getId());
         $queryPrepared->execute();
     }
 

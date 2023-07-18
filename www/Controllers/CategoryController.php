@@ -4,6 +4,8 @@ session_start();
 use App\Core\View;
 use App\Forms\FormCategory;
 use App\Models\Category;
+use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Token;
 use App\Core\Verificator;
 
@@ -98,6 +100,18 @@ class CategoryController {
             echo 'You are not enough role';
             die;
         }
+
+        $model = new Post();
+        $listPost = $model->getDetail('',$_POST["id"],'categoryid');
+        foreach ($listPost as $key => $value) {
+            $model = new Comment();
+            $model->setId($value["id"]);
+            $model->delete('postid');
+        }
+        $model = new Post();
+        $model->setId($_POST["id"]);
+        $model->delete('categoryid');
+
         $model = new Category();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';

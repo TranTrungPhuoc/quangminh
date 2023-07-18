@@ -126,9 +126,17 @@
   controller: SecurityController
   action: login
 
+/register:
+  controller: SecurityController
+  action: register
+
 /processlogin:
   controller: SecurityController
   action: processlogin
+
+/processregister:
+  controller: SecurityController
+  action: processRegister
 
 /logout:
   controller: SecurityController

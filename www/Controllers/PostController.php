@@ -4,6 +4,7 @@ session_start();
 use App\Core\View;
 use App\Forms\FormPost;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Token;
 use App\Core\Verificator;
 
@@ -50,7 +51,7 @@ class PostController {
         $model = new Post();
         $form = new FormPost();
         $view = new View($this->folder."/form", "back");
-        $category = $model->getList('esgi_Category');
+        $category = $model->getList('esgi_Category', 'sort', 'ASC', 100, 'WHERE status=true');
         $view->assign('form', $form->getConfig([], $category));
         $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
         if($form->isSubmit())
@@ -94,7 +95,7 @@ class PostController {
         $model->setId($_GET['id']);
         $row = $model->getDetail();
         $view = new View($this->folder."/form", "back");
-        $category = $model->getList('esgi_Category');
+        $category = $model->getList('esgi_Category', 'sort', 'ASC', 100, 'WHERE status=true');
         $view->assign('form', $form->getConfig($row, $category));
         if($form->isSubmit())
         {
@@ -131,6 +132,10 @@ class PostController {
             echo 'You are not enough role';
             die;
         }
+        $model = new Comment();
+        $model->setId($_POST["id"]);
+        $model->delete('postid');
+
         $model = new Post();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';

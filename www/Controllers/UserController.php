@@ -4,6 +4,10 @@ session_start();
 use App\Core\View;
 use App\Forms\FormUser;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Menu;
 use App\Models\Token;
 use App\Core\Verificator;
 
@@ -116,6 +120,31 @@ class UserController {
             echo 'You are not enough role';
             die;
         }
+
+        $model = new Category();
+        $listCategory = $model->getDetail('',$_POST["id"],'userid');
+        foreach ($listCategory as $key => $value) {
+            $model = new Post();
+            $listPost = $model->getDetail('',$value["id"],'categoryid');
+            foreach ($listPost as $key => $value) {
+                $model = new Comment();
+                $model->setId($value["id"]);
+                $model->delete('postid');
+            }
+            $model = new Post();
+            $model->setId($value["id"]);
+            $model->delete('categoryid');
+        }
+        $model = new Category();
+        $model->setId($_POST["id"]);
+        $model->delete('userid');
+        $model = new Menu();
+        $model->setId($_POST["id"]);
+        $model->delete('userid');
+        $model = new Token();
+        $model->setId($_POST["id"]);
+        $model->delete('userid');
+
         $model = new User();
         $model->setId($_POST["id"]);
         $result = (count($model->getDetail()) == 0) ? 'Dữ liệu không tồn tại.' : '';
